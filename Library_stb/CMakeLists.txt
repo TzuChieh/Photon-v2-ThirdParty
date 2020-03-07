@@ -1,0 +1,48 @@
+# stb is a header-only library
+# (see https://dominikberner.ch/cmake-interface-lib/ for the basics on 
+# configuring a header-only library)
+
+include(GNUInstallDirs)
+
+project("stb"
+    VERSION      0.0.0
+    DESCRIPTION  "stb single-file public domain libraries for C/C++"
+    HOMEPAGE_URL "https://github.com/nothings/stb")
+
+add_library(${PROJECT_NAME} INTERFACE)
+
+# Name alias so targets can always be used with namespace
+add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
+
+# BUILD_INTERFACE:   include path if being used to build
+# INSTALL_INTERFACE: include path if being used as an installation (relative to install prefix)
+target_include_directories(${PROJECT_NAME} INTERFACE 
+    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/Source/stb/>
+    $<INSTALL_INTERFACE:${PROJECT_NAME}/${CMAKE_INSTALL_INCLUDEDIR}>)
+
+target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_17)
+
+install(TARGETS ${PROJECT_NAME}
+    EXPORT ${PROJECT_NAME}_targets
+    ARCHIVE DESTINATION ${PROJECT_NAME}/${CMAKE_INSTALL_LIBDIR}
+    LIBRARY DESTINATION ${PROJECT_NAME}/${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${PROJECT_NAME}/${CMAKE_INSTALL_BINDIR})
+
+include(CMakePackageConfigHelpers)
+write_basic_package_version_file(${PROJECT_NAME}_config_version.cmake
+    VERSION       ${PROJECT_VERSION}
+    COMPATIBILITY ExactVersion)
+
+configure_package_config_file(
+    ${PROJECT_SOURCE_DIR}/cmake/${PROJECT_NAME}_config.cmake.in
+    ${PROJECT_BINARY_DIR}/${PROJECT_NAME}_config.cmake
+    INSTALL_DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake/)
+
+install(FILES 
+    ${PROJECT_BINARY_DIR}/${PROJECT_NAME}_config.cmake
+    ${PROJECT_BINARY_DIR}/${PROJECT_NAME}_config_version.cmake
+    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake/)
+
+install(DIRECTORY 
+    ${PROJECT_SOURCE_DIR}/Source/stb/
+    DESTINATION ${PROJECT_NAME}/${CMAKE_INSTALL_INCLUDEDIR})
