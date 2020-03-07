@@ -22,8 +22,9 @@ target_include_directories(${PROJECT_NAME} INTERFACE
 
 target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_17)
 
+# Specifying rules for installing targets from a project
 install(TARGETS ${PROJECT_NAME}
-    EXPORT ${PROJECT_NAME}_targets
+    EXPORT ${PROJECT_NAME}_exported_targets
     ARCHIVE DESTINATION ${PROJECT_NAME}/${CMAKE_INSTALL_LIBDIR}
     LIBRARY DESTINATION ${PROJECT_NAME}/${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${PROJECT_NAME}/${CMAKE_INSTALL_BINDIR})
@@ -38,11 +39,19 @@ configure_package_config_file(
     ${PROJECT_BINARY_DIR}/${PROJECT_NAME}_config.cmake
     INSTALL_DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake/)
 
+# Create/Install the export file
+install(EXPORT ${PROJECT_NAME}_exported_targets
+    FILE        ${PROJECT_NAME}_targets.cmake
+    NAMESPACE   ${PROJECT_NAME}::
+    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake)
+
+# Basically copying cmake files to the desired location
 install(FILES 
     ${PROJECT_BINARY_DIR}/${PROJECT_NAME}_config.cmake
     ${PROJECT_BINARY_DIR}/${PROJECT_NAME}_config_version.cmake
     DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${PROJECT_NAME}/cmake/)
 
+# Basically copying headers to the desired location
 install(DIRECTORY 
     ${PROJECT_SOURCE_DIR}/Source/stb/
     DESTINATION ${PROJECT_NAME}/${CMAKE_INSTALL_INCLUDEDIR})
