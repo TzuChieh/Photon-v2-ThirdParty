@@ -4,6 +4,14 @@ project(Photon-v2-ThirdParty)
 
 set(THIRD_PARTY_OUTPUT_DIR ${PROJECT_BINARY_DIR}/ThirdParty/)
 
+# Set install prefix if not provided by the user; it is suggested to set cmake
+# install prefix *after* project() call, 
+# see https://stackoverflow.com/questions/39481958
+if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+    set(CMAKE_INSTALL_PREFIX ${THIRD_PARTY_OUTPUT_DIR} CACHE PATH
+        "Folder for storing built third-party libraries." FORCE)
+endif()
+
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_OUTPUT_DIR})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${THIRD_PARTY_OUTPUT_DIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${THIRD_PARTY_OUTPUT_DIR})
@@ -55,8 +63,6 @@ endif()
 
 add_subdirectory("./Library_stb/")
 
-if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-    set(CMAKE_INSTALL_PREFIX ${THIRD_PARTY_OUTPUT_DIR} CACHE PATH
-        "Folder for storing built third-party libraries." FORCE)
+if(WIN32)
+    add_subdirectory("./Library_StackWalker/Source/StackWalker/")
 endif()
-
