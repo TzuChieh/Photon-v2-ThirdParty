@@ -62,6 +62,7 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 add_subdirectory("./Library_stb/")
+add_subdirectory("./Library_googletest/Source/googletest/")
 
 if(WIN32)
     add_subdirectory("./Library_StackWalker/Source/StackWalker/")
