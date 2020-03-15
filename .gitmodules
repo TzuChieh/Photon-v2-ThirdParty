@@ -1,3 +1,6 @@
 [submodule "stb"]
 	path = stb
 	url = https://github.com/TzuChieh/stb.git
+[submodule "StackWalker"]
+	path = StackWalker
+	url = https://github.com/TzuChieh/StackWalker.git
