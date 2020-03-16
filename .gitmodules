@@ -4,3 +4,6 @@
 [submodule "StackWalker"]
 	path = StackWalker
 	url = https://github.com/TzuChieh/StackWalker.git
+[submodule "googletest"]
+	path = googletest
+	url = https://github.com/TzuChieh/googletest.git
