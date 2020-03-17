@@ -64,6 +64,7 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 add_subdirectory("./stb/")
+add_subdirectory("./googletest/")
 
 if(WIN32)
     add_subdirectory("./StackWalker/")
