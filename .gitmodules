@@ -7,3 +7,6 @@
 [submodule "googletest"]
 	path = googletest
 	url = https://github.com/TzuChieh/googletest.git
+[submodule "Asio"]
+	path = Asio
+	url = https://github.com/TzuChieh/asio.git
