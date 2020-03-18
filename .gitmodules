@@ -10,3 +10,6 @@
 [submodule "Asio"]
 	path = Asio
 	url = https://github.com/TzuChieh/asio.git
+[submodule "zlib"]
+	path = zlib
+	url = https://github.com/TzuChieh/zlib.git
