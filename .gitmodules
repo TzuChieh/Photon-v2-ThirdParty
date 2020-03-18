@@ -13,3 +13,6 @@
 [submodule "zlib"]
 	path = zlib
 	url = https://github.com/TzuChieh/zlib.git
+[submodule "OpenEXR"]
+	path = OpenEXR
+	url = https://github.com/TzuChieh/openexr.git
