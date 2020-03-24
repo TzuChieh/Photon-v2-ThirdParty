@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.12)
 
 project(Photon-v2-ThirdParty)
 
-set(THIRD_PARTY_OUTPUT_DIR ${PROJECT_BINARY_DIR}/ThirdParty/)
+set(THIRD_PARTY_OUTPUT_DIR "${PROJECT_BINARY_DIR}/ThirdParty/")
 
 # Set install prefix if not provided by the user; it is suggested to set cmake
 # install prefix *after* project() call, 
@@ -63,6 +63,10 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 
 endif()
 
+set(BUILD_TESTING
+    OFF CACHE BOOL 
+    "Build the testing tree.")
+
 if(WIN32)
     add_subdirectory("./StackWalker/")
 endif()
@@ -71,3 +75,39 @@ add_subdirectory("./stb/")
 add_subdirectory("./googletest/")
 add_subdirectory("./Asio/")
 add_subdirectory("./zlib/")
+
+set(ZLIB_INCLUDE_DIR
+    ${THIRD_PARTY_OUTPUT_DIR}/zlib/include/ CACHE STRING 
+    "Path to zlib's include directory.")
+
+# TODO: are lib paths to the actual lib file?
+# TODO: consider to use an external script to build zlib first?
+
+set(ZLIB_LIBRARY_DEBUG
+    ${THIRD_PARTY_OUTPUT_DIR}/zlib/lib/ CACHE STRING 
+    "Path to zlib's (debug) library directory.")
+
+set(ZLIB_LIBRARY_RELEASE
+    ${THIRD_PARTY_OUTPUT_DIR}/zlib/lib/ CACHE STRING 
+    "Path to zlib's (release) library directory.")
+
+set(PYILMBASE_ENABLE
+    OFF CACHE BOOL 
+    "Enables configuration of the PyIlmBase module.")
+
+set(PYILMBASE_ENABLE
+    OFF CACHE BOOL 
+    "Enables configuration of the PyIlmBase module.")
+
+set(OPENEXR_BUILD_UTILS
+    OFF CACHE BOOL 
+    "Enables building of utility programs.")
+
+set(OPENEXR_VIEWERS_ENABLE
+    OFF CACHE BOOL 
+    "Enables configuration of the viewers module.")
+
+add_subdirectory("./OpenEXR/")
+
+add_dependencies(IlmImf
+    zlib zlibstatic)
