@@ -74,22 +74,32 @@ endif()
 add_subdirectory("./stb/")
 add_subdirectory("./googletest/")
 add_subdirectory("./Asio/")
-add_subdirectory("./zlib/")
 
-set(ZLIB_INCLUDE_DIR
-    ${THIRD_PARTY_OUTPUT_DIR}/zlib/include/ CACHE STRING 
-    "Path to zlib's include directory.")
+# Using a copied repository of zlib since zlib may modify its own source
+# during configuration stage (which pollutes the source tree as changes will 
+# be reflected in next commit and may not be reconfigured next time since the 
+# original zonf.h has already gone/renamed to zconf.h.included).
+set(ZLIB_COPIED_REPO_SRC_DIR "${PROJECT_BINARY_DIR}/zlib_copied_repo/")
+set(ZLIB_COPIED_REPO_BIN_DIR "${PROJECT_BINARY_DIR}/zlib_copied_repo_build/")
+file(COPY
+    "./zlib/"
+    DESTINATION ${ZLIB_COPIED_REPO_SRC_DIR})
+add_subdirectory(${ZLIB_COPIED_REPO_SRC_DIR} ${ZLIB_COPIED_REPO_BIN_DIR})
+
+# set(ZLIB_INCLUDE_DIR
+#     ${THIRD_PARTY_OUTPUT_DIR}/zlib/include/ CACHE STRING 
+#     "Path to zlib's include directory.")
 
 # TODO: are lib paths to the actual lib file?
 # TODO: consider to use an external script to build zlib first?
 
-set(ZLIB_LIBRARY_DEBUG
-    ${THIRD_PARTY_OUTPUT_DIR}/zlib/lib/ CACHE STRING 
-    "Path to zlib's (debug) library directory.")
+# set(ZLIB_LIBRARY_DEBUG
+#     ${THIRD_PARTY_OUTPUT_DIR}/zlib/lib/ CACHE STRING 
+#     "Path to zlib's (debug) library directory.")
 
-set(ZLIB_LIBRARY_RELEASE
-    ${THIRD_PARTY_OUTPUT_DIR}/zlib/lib/ CACHE STRING 
-    "Path to zlib's (release) library directory.")
+# set(ZLIB_LIBRARY_RELEASE
+#     ${THIRD_PARTY_OUTPUT_DIR}/zlib/lib/ CACHE STRING 
+#     "Path to zlib's (release) library directory.")
 
 set(PYILMBASE_ENABLE
     OFF CACHE BOOL 
@@ -109,5 +119,5 @@ set(OPENEXR_VIEWERS_ENABLE
 
 add_subdirectory("./OpenEXR/")
 
-add_dependencies(IlmImf
-    zlib zlibstatic)
+# add_dependencies(IlmImf
+#     zlib zlibstatic)
