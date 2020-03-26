@@ -116,6 +116,14 @@ set(OPENEXR_OUTPUT_SUBDIR
     "" CACHE STRING 
     "Destination sub-folder of the include path for install.")
 
+set(ILMBASE_LIB_SUFFIX
+    "" CACHE STRING 
+    "String added to the end of all the libraries.")
+
+set(OPENEXR_LIB_SUFFIX
+    "" CACHE STRING 
+    "String added to the end of all the libraries.")
+
 add_subdirectory("./OpenEXR/")
 
 # add_dependencies(IlmImf
