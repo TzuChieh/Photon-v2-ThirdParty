@@ -14,15 +14,6 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
         "Folder for storing built third-party libraries." FORCE)
 endif()
 
-# set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${THIRD_PARTY_OUTPUT_DIR})
-# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${THIRD_PARTY_OUTPUT_DIR})
-# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${THIRD_PARTY_OUTPUT_DIR})
-
-# # To eliminate extra "Release" folder on MSVC
-# set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${THIRD_PARTY_OUTPUT_DIR})
-# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${THIRD_PARTY_OUTPUT_DIR})
-# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${THIRD_PARTY_OUTPUT_DIR})
-
 # Compile with C++17 standard enabled
 set(CMAKE_CXX_STANDARD          17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -116,6 +107,14 @@ set(OPENEXR_BUILD_UTILS
 set(OPENEXR_VIEWERS_ENABLE
     OFF CACHE BOOL 
     "Enables configuration of the viewers module.")
+
+set(ILMBASE_OUTPUT_SUBDIR
+    "" CACHE STRING 
+    "Destination sub-folder of the include path for install.")
+
+set(OPENEXR_OUTPUT_SUBDIR
+    "" CACHE STRING 
+    "Destination sub-folder of the include path for install.")
 
 add_subdirectory("./OpenEXR/")
 
