@@ -14,6 +14,8 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
         "Folder for storing built third-party libraries." FORCE)
 endif()
 
+option(BUILD_SHARED_LIBS "Build as shared libraries if applicable." ON)
+
 # Compile with C++17 standard enabled
 set(CMAKE_CXX_STANDARD          17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -34,8 +36,8 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
     set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} /MP")
 
     # statically link runtime lib to ensure 
-    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
-    set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
+    # set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
+    # set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
 
 # Using GCC
 elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
@@ -59,11 +61,21 @@ set(BUILD_TESTING
     "Build the testing tree.")
 
 if(WIN32)
+    set(StackWalker_DISABLE_TESTS 
+        ON CACHE BOOL 
+        "Disable tests")
+
     add_subdirectory("./StackWalker/")
 endif()
 
 add_subdirectory("./stb/")
+
+set(gtest_force_shared_crt
+    ON CACHE BOOL 
+    "Use shared (DLL) run-time lib even when Google Test is built as static lib.")
+
 add_subdirectory("./googletest/")
+
 add_subdirectory("./Asio/")
 
 # Using a copied repository of zlib since zlib may modify its own source
