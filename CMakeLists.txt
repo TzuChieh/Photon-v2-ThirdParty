@@ -104,6 +104,14 @@ add_subdirectory(${ZLIB_COPIED_REPO_SRC_DIR} ${ZLIB_COPIED_REPO_BIN_DIR})
 #     ${THIRD_PARTY_OUTPUT_DIR}/zlib/lib/ CACHE STRING 
 #     "Path to zlib's (release) library directory.")
 
+set(OPENEXR_INSTALL_PKG_CONFIG
+    ON CACHE BOOL 
+    "Install OpenEXR.pc file.")
+
+set(ILMBASE_INSTALL_PKG_CONFIG
+    ON CACHE BOOL 
+    "Install IlmBase.pc file.")
+
 set(PYILMBASE_ENABLE
     OFF CACHE BOOL 
     "Enables configuration of the PyIlmBase module.")

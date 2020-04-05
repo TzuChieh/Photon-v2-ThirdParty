@@ -1,16 +1,15 @@
 # Photon-v2-ThirdParty
 
-This repository holds source code of third-party libraries used by [Photon-v2 renderer](https://github.com/TzuChieh/Photon-v2). Here is the list of libraries as well as the used versions and settings:
+This repository holds source code of third-party libraries used by [Photon-v2 renderer](https://github.com/TzuChieh/Photon-v2) as well as utilities for building them. Here is a list of libraries with the used versions and settings:
 
-Header-only libraries:
+Header-only:
 
 * [stb](https://github.com/nothings/stb)
   * git commit hash `e6afb9cbae4064da8c3e69af3ff5c4629579c1d2`
 * [Asio](https://github.com/chriskohlhoff/asio)
   * git tag `asio-1-14-0`
-  * define `ASIO_STANDALONE` so that Boost is not required
 
-Pre-compiled libraries:
+Pre-compiled:
 
 * [googletest](https://github.com/google/googletest)
   * git commit hash `a868e618c0607259c63f37d948b72586a13922ff`
@@ -21,23 +20,17 @@ Pre-compiled libraries:
 * [zlib](https://github.com/madler/zlib)
   * git tag `v1.2.11`
 * [openexr](https://github.com/openexr/openexr)
-  * git tag `v2.3.0`
-  * python binding is not needed (define `OPENEXR_BUILD_PYTHON_LIBS=OFF` in CMake)
+  * git tag `v2.4.1`
 
 ## Build
 
-All libraries should be built (except for header-only libraries) for static linking to avoid possible conflicts and with settings compatible with the renderer. Currently, pre-compiled libraries are produced under the following environments:
+All third-party libraries should be built to
+1. Link against the same version of dependent libraries
+2. With settings compatible with the renderer 
+to avoid possible conflicts. Currently, we have CMake scripts that handle the build settings/process for you.
 
-* Windows
-  * Visual Studio 2017
-* Linux
-  * Ubuntu 16.04 with g++ 7.3.0
-* macOS
-  * High Sierra 10.13 with Apple LLVM version 10.0.0 (clang-1000.10.44.4), target: x86_64-apple-darwin17.0.0, thread model: posix
-  * When it comes to apple's toolchain versioning, [this](https://gist.github.com/yamaya/2924292) is a good reference
-
-If you need to compile the libraries by yourself, please try to adhere to the settings listed here as close as possible. This will ensure the libraries work well with the render engine and easier for me to debug if you got into any trouble using Photon-v2.
+If you need to compile the libraries by yourself, please try to adhere to the settings listed in [Photon-v2-ThirdParty-Prebuilt](https://github.com/TzuChieh/Photon-v2-ThirdParty-Prebuilt).
 
 ## License
 
-See each library's corresponding project site for more detail. Licenses (if present) are also included in each library's folder.
+See each library's corresponding project site for more detail. This building utility is in [The MIT License]("./LICENSE").
