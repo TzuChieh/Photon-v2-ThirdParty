@@ -33,4 +33,4 @@ If you need to compile the libraries by yourself, please try to adhere to the se
 
 ## License
 
-See each library's corresponding project site for more detail. This building utility is in [The MIT License]("./LICENSE").
+See each library's corresponding project site for more detail. This building utility is in [The MIT License](LICENSE).
