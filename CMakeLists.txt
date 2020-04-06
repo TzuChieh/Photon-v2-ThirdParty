@@ -59,18 +59,32 @@ endif()
 include(ExternalProject)
 include(GNUInstallDirs)
 
-set(ZLIB_LIBRARY_NAME    "zlib")
-set(OPENEXR_LIBRARY_NAME "OpenEXR")
+set(STB_LIBRARY_NAME        "stb")
+set(ASIO_LIBRARY_NAME       "Asio")
+set(GOOGLETEST_LIBRARY_NAME "googletest")
+set(ZLIB_LIBRARY_NAME       "zlib")
+set(OPENEXR_LIBRARY_NAME    "OpenEXR")
 
-if(WIN32)
-    set(StackWalker_DISABLE_TESTS 
-        ON CACHE BOOL 
-        "Disable tests")
+#------------------------------------------------------------------------------
+# stb
+#------------------------------------------------------------------------------
 
-    add_subdirectory("./StackWalker/")
-endif()
+ExternalProject_Add(${STB_LIBRARY_NAME}
+    PREFIX         "${PROJECT_BINARY_DIR}/${STB_LIBRARY_NAME}"
+    BUILD_ALWAYS   ON
+    SOURCE_DIR     "${PROJECT_SOURCE_DIR}/${STB_LIBRARY_NAME}"
+    BINARY_DIR     "${PROJECT_BINARY_DIR}/${STB_LIBRARY_NAME}"
+    INSTALL_DIR    "${THIRD_PARTY_INSTALL_DIR}/${STB_LIBRARY_NAME}"
+    
+    CMAKE_CACHE_ARGS
+        -DBUILD_TESTING:BOOL=OFF
+        -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
+        
+    INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
 
-add_subdirectory("./stb/")
+#------------------------------------------------------------------------------
+# googletest
+#------------------------------------------------------------------------------
 
 set(gtest_force_shared_crt
     ON CACHE BOOL 
@@ -78,7 +92,26 @@ set(gtest_force_shared_crt
 
 add_subdirectory("./googletest/")
 
-add_subdirectory("./Asio/")
+#------------------------------------------------------------------------------
+# Asio
+#------------------------------------------------------------------------------
+
+ExternalProject_Add(${ASIO_LIBRARY_NAME}
+    PREFIX         "${PROJECT_BINARY_DIR}/${ASIO_LIBRARY_NAME}"
+    BUILD_ALWAYS   ON
+    SOURCE_DIR     "${PROJECT_SOURCE_DIR}/${ASIO_LIBRARY_NAME}"
+    BINARY_DIR     "${PROJECT_BINARY_DIR}/${ASIO_LIBRARY_NAME}"
+    INSTALL_DIR    "${THIRD_PARTY_INSTALL_DIR}/${ASIO_LIBRARY_NAME}"
+    
+    CMAKE_CACHE_ARGS
+        -DBUILD_TESTING:BOOL=OFF
+        -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
+        
+    INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
+
+#------------------------------------------------------------------------------
+# zlib
+#------------------------------------------------------------------------------
 
 set(ZLIB_COPIED_REPO_SRC_DIR "${PROJECT_BINARY_DIR}/zlib_copied_repo/")
 set(ZLIB_COPIED_REPO_BIN_DIR "${PROJECT_BINARY_DIR}/zlib_copied_repo_build/")
@@ -112,6 +145,10 @@ ExternalProject_Add(${ZLIB_LIBRARY_NAME}
         
     INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
 
+#------------------------------------------------------------------------------
+# OpenEXR
+#------------------------------------------------------------------------------
+
 ExternalProject_Add(${OPENEXR_LIBRARY_NAME}
     DEPENDS        ${ZLIB_LIBRARY_NAME}
 
@@ -141,3 +178,15 @@ ExternalProject_Add(${OPENEXR_LIBRARY_NAME}
         -DZLIB_ROOT:STRING=${ZLIB_LIBRARY_INSTALL_DIR}
         
     INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
+
+#------------------------------------------------------------------------------
+# StackWalker
+#------------------------------------------------------------------------------
+
+if(WIN32)
+    set(StackWalker_DISABLE_TESTS 
+        ON CACHE BOOL 
+        "Disable tests")
+
+    add_subdirectory("./StackWalker/")
+endif()
