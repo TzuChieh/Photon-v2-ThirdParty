@@ -86,11 +86,23 @@ ExternalProject_Add(${STB_LIBRARY_NAME}
 # googletest
 #------------------------------------------------------------------------------
 
-set(gtest_force_shared_crt
-    ON CACHE BOOL 
-    "Use shared (DLL) run-time lib even when Google Test is built as static lib.")
-
-add_subdirectory("./googletest/")
+ExternalProject_Add(${GOOGLETEST_LIBRARY_NAME}
+    PREFIX         "${PROJECT_BINARY_DIR}/${GOOGLETEST_LIBRARY_NAME}"
+    BUILD_ALWAYS   ON
+    SOURCE_DIR     "${PROJECT_SOURCE_DIR}/${GOOGLETEST_LIBRARY_NAME}"
+    BINARY_DIR     "${PROJECT_BINARY_DIR}/${GOOGLETEST_LIBRARY_NAME}"
+    INSTALL_DIR    "${THIRD_PARTY_INSTALL_DIR}/${GOOGLETEST_LIBRARY_NAME}"
+    
+    CMAKE_CACHE_ARGS
+        -DBUILD_TESTING:BOOL=OFF
+        -DBUILD_SHARED_LIBS:BOOL=ON
+        -DCMAKE_CXX_STANDARD:STRING=${CMAKE_CXX_STANDARD}
+        -DCMAKE_CXX_STANDARD_REQUIRED:BOOL=ON
+        -DCMAKE_CXX_FLAGS:STRING=${CMAKE_CXX_FLAGS}
+        -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
+        -Dgtest_force_shared_crt:BOOL=ON
+        
+    INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
 
 #------------------------------------------------------------------------------
 # Asio
