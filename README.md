@@ -32,7 +32,7 @@ All third-party libraries should be built to
 1. Link against the same version of dependent libraries
 2. With settings compatible with the renderer to avoid possible conflicts. Currently, we have CMake scripts that handle the build settings/process for you.
 
-If you need to compile the libraries by yourself, please try to adhere to the settings listed in [Photon-v2-ThirdParty-Prebuilt](https://github.com/TzuChieh/Photon-v2-ThirdParty-Prebuilt).
+If you wish to compile the libraries by yourself, please try to adhere to the settings listed in [Photon-v2-ThirdParty-Prebuilt](https://github.com/TzuChieh/Photon-v2-ThirdParty-Prebuilt).
 
 ## License
 
