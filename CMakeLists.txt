@@ -1,8 +1,8 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.15)
 
 project(Photon-v2-ThirdParty)
 
-set(THIRD_PARTY_OUTPUT_DIR "${PROJECT_BINARY_DIR}/ThirdParty/")
+set(THIRD_PARTY_INSTALL_DIR "${PROJECT_BINARY_DIR}/ThirdParty")
 
 # Set install prefix if not provided by the user; it is suggested to set cmake
 # install prefix *after* project() call, 
@@ -10,7 +10,7 @@ set(THIRD_PARTY_OUTPUT_DIR "${PROJECT_BINARY_DIR}/ThirdParty/")
 # (HACK: note however subdirectories can have their own project() calls... 
 # what's the effect on them?)
 if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-    set(CMAKE_INSTALL_PREFIX ${THIRD_PARTY_OUTPUT_DIR} CACHE PATH
+    set(CMAKE_INSTALL_PREFIX ${THIRD_PARTY_INSTALL_DIR} CACHE PATH
         "Folder for storing built third-party libraries." FORCE)
 endif()
 
@@ -22,6 +22,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # TODO: option for switching between static and dynamic linking
 # TODO: add g++/clang MT MD equivalent flags?
+
+#------------------------------------------------------------------------------
+# Set suitable CMAKE_CXX_FLAGS
+#------------------------------------------------------------------------------
 
 # Using MSVC
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
@@ -42,23 +46,21 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 # Using GCC
 elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
 
-    set(THIRD_PARTY_PLATFORM "linux")
-
     # as a fallback when CMake version < 3.8.0 or for whatever reasons
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 
 # Using regular Clang or AppleClang
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-    
-    set(THIRD_PARTY_PLATFORM "osx")
 
     # TODO: enforce C++17 if previous requests have no use
 
 endif()
 
-set(BUILD_TESTING
-    OFF CACHE BOOL 
-    "Build the testing tree.")
+include(ExternalProject)
+include(GNUInstallDirs)
+
+set(ZLIB_LIBRARY_NAME    "zlib")
+set(OPENEXR_LIBRARY_NAME "OpenEXR")
 
 if(WIN32)
     set(StackWalker_DISABLE_TESTS 
@@ -78,73 +80,64 @@ add_subdirectory("./googletest/")
 
 add_subdirectory("./Asio/")
 
+set(ZLIB_COPIED_REPO_SRC_DIR "${PROJECT_BINARY_DIR}/zlib_copied_repo/")
+set(ZLIB_COPIED_REPO_BIN_DIR "${PROJECT_BINARY_DIR}/zlib_copied_repo_build/")
+set(ZLIB_LIBRARY_INSTALL_DIR "${THIRD_PARTY_INSTALL_DIR}/${ZLIB_LIBRARY_NAME}")
+
 # Using a copied repository of zlib since zlib may modify its own source
 # during configuration stage (which pollutes the source tree as changes will 
 # be reflected in next commit and may not be reconfigured next time since the 
 # original zonf.h has already gone/renamed to zconf.h.included).
-set(ZLIB_COPIED_REPO_SRC_DIR "${PROJECT_BINARY_DIR}/zlib_copied_repo/")
-set(ZLIB_COPIED_REPO_BIN_DIR "${PROJECT_BINARY_DIR}/zlib_copied_repo_build/")
 file(COPY
     "./zlib/"
     DESTINATION ${ZLIB_COPIED_REPO_SRC_DIR})
-add_subdirectory(${ZLIB_COPIED_REPO_SRC_DIR} ${ZLIB_COPIED_REPO_BIN_DIR})
 
-# set(ZLIB_INCLUDE_DIR
-#     ${THIRD_PARTY_OUTPUT_DIR}/zlib/include/ CACHE STRING 
-#     "Path to zlib's include directory.")
+# TODO: what if the user want to link to static version of zlib (zlibstatic)?
+#       possibly check for flags and make that a cmake option
 
-# TODO: are lib paths to the actual lib file?
-# TODO: consider to use an external script to build zlib first?
+ExternalProject_Add(${ZLIB_LIBRARY_NAME}
+    PREFIX         "${ZLIB_COPIED_REPO_BIN_DIR}"
+    BUILD_ALWAYS   ON
+    SOURCE_DIR     "${ZLIB_COPIED_REPO_SRC_DIR}"
+    BINARY_DIR     "${ZLIB_COPIED_REPO_BIN_DIR}"
+    INSTALL_DIR    "${ZLIB_LIBRARY_INSTALL_DIR}"
+    
+    CMAKE_CACHE_ARGS
+        -DBUILD_TESTING:BOOL=OFF
+        -DBUILD_SHARED_LIBS:BOOL=ON
+        -DCMAKE_CXX_STANDARD:STRING=${CMAKE_CXX_STANDARD}
+        -DCMAKE_CXX_STANDARD_REQUIRED:BOOL=ON
+        -DCMAKE_CXX_FLAGS:STRING=${CMAKE_CXX_FLAGS}
+        -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
+        
+    INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
 
-# set(ZLIB_LIBRARY_DEBUG
-#     ${THIRD_PARTY_OUTPUT_DIR}/zlib/lib/ CACHE STRING 
-#     "Path to zlib's (debug) library directory.")
+ExternalProject_Add(${OPENEXR_LIBRARY_NAME}
+    DEPENDS        ${ZLIB_LIBRARY_NAME}
 
-# set(ZLIB_LIBRARY_RELEASE
-#     ${THIRD_PARTY_OUTPUT_DIR}/zlib/lib/ CACHE STRING 
-#     "Path to zlib's (release) library directory.")
-
-set(OPENEXR_INSTALL_PKG_CONFIG
-    ON CACHE BOOL 
-    "Install OpenEXR.pc file.")
-
-set(ILMBASE_INSTALL_PKG_CONFIG
-    ON CACHE BOOL 
-    "Install IlmBase.pc file.")
-
-set(PYILMBASE_ENABLE
-    OFF CACHE BOOL 
-    "Enables configuration of the PyIlmBase module.")
-
-set(PYILMBASE_ENABLE
-    OFF CACHE BOOL 
-    "Enables configuration of the PyIlmBase module.")
-
-set(OPENEXR_BUILD_UTILS
-    OFF CACHE BOOL 
-    "Enables building of utility programs.")
-
-set(OPENEXR_VIEWERS_ENABLE
-    OFF CACHE BOOL 
-    "Enables configuration of the viewers module.")
-
-set(ILMBASE_OUTPUT_SUBDIR
-    "" CACHE STRING 
-    "Destination sub-folder of the include path for install.")
-
-set(OPENEXR_OUTPUT_SUBDIR
-    "" CACHE STRING 
-    "Destination sub-folder of the include path for install.")
-
-set(ILMBASE_LIB_SUFFIX
-    "" CACHE STRING 
-    "String added to the end of all the libraries.")
-
-set(OPENEXR_LIB_SUFFIX
-    "" CACHE STRING 
-    "String added to the end of all the libraries.")
-
-add_subdirectory("./OpenEXR/")
-
-# add_dependencies(IlmImf
-#     zlib zlibstatic)
+    PREFIX         "${PROJECT_BINARY_DIR}/${OPENEXR_LIBRARY_NAME}"
+    BUILD_ALWAYS   ON
+    SOURCE_DIR     "${PROJECT_SOURCE_DIR}/${OPENEXR_LIBRARY_NAME}"
+    BINARY_DIR     "${PROJECT_BINARY_DIR}/${OPENEXR_LIBRARY_NAME}"
+    INSTALL_DIR    "${THIRD_PARTY_INSTALL_DIR}/${OPENEXR_LIBRARY_NAME}"
+    
+    CMAKE_CACHE_ARGS
+        -DBUILD_TESTING:BOOL=OFF
+        -DBUILD_SHARED_LIBS:BOOL=ON
+        -DCMAKE_CXX_STANDARD:STRING=${CMAKE_CXX_STANDARD}
+        -DCMAKE_CXX_STANDARD_REQUIRED:BOOL=ON
+        -DCMAKE_CXX_FLAGS:STRING=${CMAKE_CXX_FLAGS}
+        -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
+        -DOPENEXR_INSTALL_PKG_CONFIG:BOOL=ON
+        -DILMBASE_INSTALL_PKG_CONFIG:BOOL=ON
+        -DPYILMBASE_ENABLE:BOOL=OFF
+        -DPYILMBASE_ENABLE:BOOL=OFF
+        -DOPENEXR_BUILD_UTILS:BOOL=OFF
+        -DOPENEXR_VIEWERS_ENABLE:BOOL=OFF
+        -DILMBASE_OUTPUT_SUBDIR:STRING=
+        -DOPENEXR_OUTPUT_SUBDIR:STRING=
+        -DILMBASE_LIB_SUFFIX:STRING=
+        -DOPENEXR_LIB_SUFFIX:STRING=
+        -DZLIB_ROOT:STRING=${ZLIB_LIBRARY_INSTALL_DIR}
+        
+    INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
