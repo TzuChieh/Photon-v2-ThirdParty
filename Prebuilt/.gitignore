@@ -1,0 +1,3 @@
+# Overriding parent .gitignore as we want to track everything in this folder
+
+# intentionally empty

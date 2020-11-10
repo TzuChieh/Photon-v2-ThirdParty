@@ -91,12 +91,3 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps
-
-#******************************************************************************
-#******************************************************************************
-#******************************************************************************
-# Track these files for specific purposes:
-
-# Add prebuilt binaries
-/Prebuilt/
-!/Prebuilt/
