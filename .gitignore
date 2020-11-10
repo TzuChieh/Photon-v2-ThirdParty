@@ -1,5 +1,5 @@
 ###############################################################################
-# Photon-v2-ThirdParty Project Specific Files & Folders                                  #
+# Photon-v2-ThirdParty Project Specific Files & Folders                       #
 ###############################################################################
 /build/
 
@@ -91,3 +91,11 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps
+
+#******************************************************************************
+#******************************************************************************
+#******************************************************************************
+# However, track these files for specific purposes. Need to be the last block
+
+# Add prebuilt binaries
+!/Prebuilt/
