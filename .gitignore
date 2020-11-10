@@ -95,7 +95,8 @@ _deps
 #******************************************************************************
 #******************************************************************************
 #******************************************************************************
-# However, track these files for specific purposes. Need to be the last block
+# Track these files for specific purposes:
 
 # Add prebuilt binaries
+/Prebuilt/
 !/Prebuilt/
