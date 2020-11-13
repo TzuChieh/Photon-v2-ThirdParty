@@ -44,7 +44,7 @@ Precompiled version is provided in [Prebuilt](./Prebuilt). Libraries as well as 
 * Windows
   * Visual Studio 2017
 * Linux
-  * Ubuntu 16.04 with g++ 7.3.0
+  * Ubuntu 18.04 with g++ 7.5.0
 * macOS
   * High Sierra 10.13 with Apple LLVM version 10.0.0 (clang-1000.10.44.4), target: x86_64-apple-darwin17.0.0, thread model: posix
   * When it comes to apple's toolchain versioning, [this](https://gist.github.com/yamaya/2924292) is a good reference
