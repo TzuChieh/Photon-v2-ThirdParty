@@ -1,7 +1,7 @@
 
 ####### Expanded from @PACKAGE_INIT@ by configure_package_config_file() #######
 ####### Any changes to this file will be overwritten by the next CMake run ####
-####### The input file was stb-config.cmake.in                            ########
+####### The input file was stbConfig.cmake.in                            ########
 
 get_filename_component(PACKAGE_PREFIX_DIR "${CMAKE_CURRENT_LIST_DIR}/../../" ABSOLUTE)
 
@@ -24,5 +24,5 @@ endmacro()
 
 ####################################################################################
 
-include("${CMAKE_CURRENT_LIST_DIR}/stb-targets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/stbTargets.cmake")
 check_required_components("stb")

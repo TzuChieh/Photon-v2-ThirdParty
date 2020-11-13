@@ -16,7 +16,7 @@ set(CMAKE_IMPORT_FILE_VERSION 1)
 set(_targetsDefined)
 set(_targetsNotDefined)
 set(_expectedTargets)
-foreach(_expectedTarget Asio::Asio)
+foreach(_expectedTarget stb::stb)
   list(APPEND _expectedTargets ${_expectedTarget})
   if(NOT TARGET ${_expectedTarget})
     list(APPEND _targetsNotDefined ${_expectedTarget})
@@ -49,11 +49,10 @@ if(_IMPORT_PREFIX STREQUAL "/")
   set(_IMPORT_PREFIX "")
 endif()
 
-# Create imported target Asio::Asio
-add_library(Asio::Asio INTERFACE IMPORTED)
+# Create imported target stb::stb
+add_library(stb::stb INTERFACE IMPORTED)
 
-set_target_properties(Asio::Asio PROPERTIES
-  INTERFACE_COMPILE_DEFINITIONS "ASIO_STANDALONE;_SILENCE_CXX17_ALLOCATOR_VOID_DEPRECATION_WARNING;_WIN32_WINNT=0x0601"
+set_target_properties(stb::stb PROPERTIES
   INTERFACE_COMPILE_FEATURES "cxx_std_17"
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
 )
@@ -64,7 +63,7 @@ endif()
 
 # Load information for each installed configuration.
 get_filename_component(_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
-file(GLOB CONFIG_FILES "${_DIR}/Asio-targets-*.cmake")
+file(GLOB CONFIG_FILES "${_DIR}/stbTargets-*.cmake")
 foreach(f ${CONFIG_FILES})
   include(${f})
 endforeach()
