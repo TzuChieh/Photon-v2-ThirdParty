@@ -1,5 +1,6 @@
-libdir=C:/Users/BlackCat/Desktop/Photon-v2-ThirdParty/build/ThirdParty/googletest/lib
-includedir=C:/Users/BlackCat/Desktop/Photon-v2-ThirdParty/build/ThirdParty/googletest/include
+prefix=C:/Users/tokzi/Desktop/Photon-v2-ThirdParty/build/ThirdParty/googletest
+libdir=C:/Users/tokzi/Desktop/Photon-v2-ThirdParty/build/ThirdParty/googletest/lib
+includedir=C:/Users/tokzi/Desktop/Photon-v2-ThirdParty/build/ThirdParty/googletest/include
 
 Name: gmock_main
 Description: GoogleMock (with main() function)
