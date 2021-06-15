@@ -16,3 +16,9 @@
 [submodule "OpenEXR"]
 	path = OpenEXR
 	url = https://github.com/TzuChieh/openexr.git
+[submodule "glfw"]
+	path = glfw
+	url = https://github.com/TzuChieh/glfw.git
+[submodule "imgui"]
+	path = imgui
+	url = https://github.com/TzuChieh/imgui.git
