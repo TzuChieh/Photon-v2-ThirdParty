@@ -25,6 +25,19 @@ Others:
 * [OpenEXR](https://github.com/openexr/openexr)
   * git commit hash `e23fdf6e02dbd8157b1d468143a82f6632781dee`
   * [__custom fork__](https://github.com/TzuChieh/openexr/tree/photon)
+* [glfw](https://github.com/glfw/glfw)
+  * git tag `3.3.4`
+  * [__custom fork__](https://github.com/TzuChieh/glfw/tree/photon)
+* [glad](https://github.com/Dav1dde/glad)
+  * we use the glad2 branch, git commit hash `994aa6e4506286131a1383b61c552bc940959917`
+  * glad is generated using webservice for glad2, settings are:
+    * Generator: C/C++
+    * APIs: gl, Version 4.6, Core profile
+    * Options: header only, loader
+  * [__generated source__](https://github.com/TzuChieh/glad/tree/photon)
+* [imgui](https://github.com/ocornut/imgui)
+  * git tag `v1.83`
+  * [__custom fork__](https://github.com/TzuChieh/imgui/tree/photon)
 
 Tools:
 

@@ -65,6 +65,9 @@ set(GOOGLETEST_LIBRARY_NAME  "googletest")
 set(ZLIB_LIBRARY_NAME        "zlib")
 set(OPENEXR_LIBRARY_NAME     "OpenEXR")
 set(STACKWALKER_LIBRARY_NAME "StackWalker")
+set(GLFW_LIBRARY_NAME        "glfw")
+set(GLAD_LIBRARY_NAME        "glad")
+set(IMGUI_LIBRARY_NAME       "imgui")
 
 #------------------------------------------------------------------------------
 # stb
@@ -215,3 +218,28 @@ if(WIN32)
             
         INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
 endif()
+
+#------------------------------------------------------------------------------
+# glfw
+#------------------------------------------------------------------------------
+
+ExternalProject_Add(${GLFW_LIBRARY_NAME}
+    PREFIX         "${PROJECT_BINARY_DIR}/${GLFW_LIBRARY_NAME}"
+    BUILD_ALWAYS   ON
+    SOURCE_DIR     "${PROJECT_SOURCE_DIR}/${GLFW_LIBRARY_NAME}"
+    BINARY_DIR     "${PROJECT_BINARY_DIR}/${GLFW_LIBRARY_NAME}"
+    INSTALL_DIR    "${THIRD_PARTY_INSTALL_DIR}/${GLFW_LIBRARY_NAME}"
+    
+    CMAKE_CACHE_ARGS
+        -DBUILD_TESTING:BOOL=OFF
+        -DBUILD_SHARED_LIBS:BOOL=ON
+        -DCMAKE_CXX_STANDARD:STRING=${CMAKE_CXX_STANDARD}
+        -DCMAKE_CXX_STANDARD_REQUIRED:BOOL=ON
+        -DCMAKE_CXX_FLAGS:STRING=${CMAKE_CXX_FLAGS}
+        -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
+        -DGLFW_BUILD_EXAMPLES:BOOL=OFF
+        -DGLFW_BUILD_TESTS:BOOL=OFF
+        -DGLFW_BUILD_DOCS:BOOL=OFF
+        -DUSE_MSVC_RUNTIME_LIBRARY_DLL:BOOL=ON
+        
+    INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
