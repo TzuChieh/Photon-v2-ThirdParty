@@ -72,7 +72,6 @@ set(IMGUI_LIBRARY_NAME       "imgui")
 #------------------------------------------------------------------------------
 # stb
 #------------------------------------------------------------------------------
-
 ExternalProject_Add(${STB_LIBRARY_NAME}
     PREFIX         "${PROJECT_BINARY_DIR}/${STB_LIBRARY_NAME}"
     BUILD_ALWAYS   ON
@@ -89,7 +88,6 @@ ExternalProject_Add(${STB_LIBRARY_NAME}
 #------------------------------------------------------------------------------
 # googletest
 #------------------------------------------------------------------------------
-
 ExternalProject_Add(${GOOGLETEST_LIBRARY_NAME}
     PREFIX         "${PROJECT_BINARY_DIR}/${GOOGLETEST_LIBRARY_NAME}"
     BUILD_ALWAYS   ON
@@ -111,7 +109,6 @@ ExternalProject_Add(${GOOGLETEST_LIBRARY_NAME}
 #------------------------------------------------------------------------------
 # Asio
 #------------------------------------------------------------------------------
-
 ExternalProject_Add(${ASIO_LIBRARY_NAME}
     PREFIX         "${PROJECT_BINARY_DIR}/${ASIO_LIBRARY_NAME}"
     BUILD_ALWAYS   ON
@@ -128,7 +125,6 @@ ExternalProject_Add(${ASIO_LIBRARY_NAME}
 #------------------------------------------------------------------------------
 # zlib
 #------------------------------------------------------------------------------
-
 set(ZLIB_COPIED_REPO_SRC_DIR "${PROJECT_BINARY_DIR}/zlib_copied_repo/")
 set(ZLIB_COPIED_REPO_BIN_DIR "${PROJECT_BINARY_DIR}/zlib_copied_repo_build/")
 set(ZLIB_LIBRARY_INSTALL_DIR "${THIRD_PARTY_INSTALL_DIR}/${ZLIB_LIBRARY_NAME}")
@@ -164,7 +160,6 @@ ExternalProject_Add(${ZLIB_LIBRARY_NAME}
 #------------------------------------------------------------------------------
 # OpenEXR
 #------------------------------------------------------------------------------
-
 ExternalProject_Add(${OPENEXR_LIBRARY_NAME}
     DEPENDS        ${ZLIB_LIBRARY_NAME}
 
@@ -198,7 +193,6 @@ ExternalProject_Add(${OPENEXR_LIBRARY_NAME}
 #------------------------------------------------------------------------------
 # StackWalker
 #------------------------------------------------------------------------------
-
 if(WIN32)
     ExternalProject_Add(${STACKWALKER_LIBRARY_NAME}
         PREFIX         "${PROJECT_BINARY_DIR}/${STACKWALKER_LIBRARY_NAME}"
@@ -222,7 +216,6 @@ endif()
 #------------------------------------------------------------------------------
 # glfw
 #------------------------------------------------------------------------------
-
 ExternalProject_Add(${GLFW_LIBRARY_NAME}
     PREFIX         "${PROJECT_BINARY_DIR}/${GLFW_LIBRARY_NAME}"
     BUILD_ALWAYS   ON
@@ -241,5 +234,21 @@ ExternalProject_Add(${GLFW_LIBRARY_NAME}
         -DGLFW_BUILD_TESTS:BOOL=OFF
         -DGLFW_BUILD_DOCS:BOOL=OFF
         -DUSE_MSVC_RUNTIME_LIBRARY_DLL:BOOL=ON
+        
+    INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
+
+#------------------------------------------------------------------------------
+# glad
+#------------------------------------------------------------------------------
+ExternalProject_Add(${GLAD_LIBRARY_NAME}
+    PREFIX         "${PROJECT_BINARY_DIR}/${GLAD_LIBRARY_NAME}"
+    BUILD_ALWAYS   ON
+    SOURCE_DIR     "${PROJECT_SOURCE_DIR}/${GLAD_LIBRARY_NAME}"
+    BINARY_DIR     "${PROJECT_BINARY_DIR}/${GLAD_LIBRARY_NAME}"
+    INSTALL_DIR    "${THIRD_PARTY_INSTALL_DIR}/${GLAD_LIBRARY_NAME}"
+    
+    CMAKE_CACHE_ARGS
+        -DBUILD_TESTING:BOOL=OFF
+        -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
         
     INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
