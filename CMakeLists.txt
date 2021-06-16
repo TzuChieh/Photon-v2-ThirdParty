@@ -67,7 +67,6 @@ set(OPENEXR_LIBRARY_NAME     "OpenEXR")
 set(STACKWALKER_LIBRARY_NAME "StackWalker")
 set(GLFW_LIBRARY_NAME        "glfw")
 set(GLAD_LIBRARY_NAME        "glad")
-set(IMGUI_LIBRARY_NAME       "imgui")
 
 #------------------------------------------------------------------------------
 # stb
