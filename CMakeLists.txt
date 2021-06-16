@@ -257,7 +257,7 @@ ExternalProject_Add(${GLAD_LIBRARY_NAME}
 # imgui
 #------------------------------------------------------------------------------
 # imgui is designed for projects to include the library source into your
-# project directly. We simply copy its source into install directly.
+# project directly. We simply copy its source into install directory.
 file(COPY
     "${PROJECT_SOURCE_DIR}/${IMGUI_LIBRARY_NAME}/"
     DESTINATION "${THIRD_PARTY_INSTALL_DIR}/${IMGUI_LIBRARY_NAME}/")
