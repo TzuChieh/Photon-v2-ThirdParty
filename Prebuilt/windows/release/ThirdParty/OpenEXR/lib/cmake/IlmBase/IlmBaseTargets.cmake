@@ -4,7 +4,7 @@ if("${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}" LESS 2.5)
    message(FATAL_ERROR "CMake >= 2.6.0 required")
 endif()
 cmake_policy(PUSH)
-cmake_policy(VERSION 2.6...3.17)
+cmake_policy(VERSION 2.6...3.18)
 #----------------------------------------------------------------
 # Generated CMake target import file.
 #----------------------------------------------------------------
@@ -62,7 +62,7 @@ add_library(IlmBase::Half SHARED IMPORTED)
 
 set_target_properties(IlmBase::Half PROPERTIES
   INTERFACE_COMPILE_DEFINITIONS "OPENEXR_DLL"
-  INTERFACE_COMPILE_FEATURES "cxx_std_17"
+  INTERFACE_COMPILE_FEATURES "cxx_std_20"
   INTERFACE_COMPILE_OPTIONS "/EHsc"
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
   INTERFACE_LINK_LIBRARIES "IlmBase::IlmBaseConfig"
@@ -73,7 +73,7 @@ add_library(IlmBase::Iex SHARED IMPORTED)
 
 set_target_properties(IlmBase::Iex PROPERTIES
   INTERFACE_COMPILE_DEFINITIONS "OPENEXR_DLL"
-  INTERFACE_COMPILE_FEATURES "cxx_std_17"
+  INTERFACE_COMPILE_FEATURES "cxx_std_20"
   INTERFACE_COMPILE_OPTIONS "/EHsc"
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
   INTERFACE_LINK_LIBRARIES "IlmBase::IlmBaseConfig"
@@ -84,7 +84,7 @@ add_library(IlmBase::IexMath SHARED IMPORTED)
 
 set_target_properties(IlmBase::IexMath PROPERTIES
   INTERFACE_COMPILE_DEFINITIONS "OPENEXR_DLL"
-  INTERFACE_COMPILE_FEATURES "cxx_std_17"
+  INTERFACE_COMPILE_FEATURES "cxx_std_20"
   INTERFACE_COMPILE_OPTIONS "/EHsc"
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
   INTERFACE_LINK_LIBRARIES "IlmBase::IlmBaseConfig;IlmBase::Iex"
@@ -95,7 +95,7 @@ add_library(IlmBase::Imath SHARED IMPORTED)
 
 set_target_properties(IlmBase::Imath PROPERTIES
   INTERFACE_COMPILE_DEFINITIONS "OPENEXR_DLL"
-  INTERFACE_COMPILE_FEATURES "cxx_std_17"
+  INTERFACE_COMPILE_FEATURES "cxx_std_20"
   INTERFACE_COMPILE_OPTIONS "/EHsc"
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
   INTERFACE_LINK_LIBRARIES "IlmBase::IlmBaseConfig;IlmBase::Half;IlmBase::IexMath"
@@ -106,7 +106,7 @@ add_library(IlmBase::IlmThread SHARED IMPORTED)
 
 set_target_properties(IlmBase::IlmThread PROPERTIES
   INTERFACE_COMPILE_DEFINITIONS "OPENEXR_DLL"
-  INTERFACE_COMPILE_FEATURES "cxx_std_17"
+  INTERFACE_COMPILE_FEATURES "cxx_std_20"
   INTERFACE_COMPILE_OPTIONS "/EHsc"
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
   INTERFACE_LINK_LIBRARIES "IlmBase::IlmBaseConfig;IlmBase::Iex;Threads::Threads"

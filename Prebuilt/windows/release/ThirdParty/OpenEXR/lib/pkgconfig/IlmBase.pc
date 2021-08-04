@@ -3,7 +3,7 @@
 ## Copyright Contributors to the OpenEXR Project.
 ##
 
-prefix=C:/Users/BlackCat/Desktop/Photon-v2-ThirdParty/build/ThirdParty/OpenEXR
+prefix=C:/dev/Photon-v2-ThirdParty/build/ThirdParty/OpenEXR
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include

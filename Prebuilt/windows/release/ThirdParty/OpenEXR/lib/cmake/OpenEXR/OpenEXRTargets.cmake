@@ -4,7 +4,7 @@ if("${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}" LESS 2.5)
    message(FATAL_ERROR "CMake >= 2.6.0 required")
 endif()
 cmake_policy(PUSH)
-cmake_policy(VERSION 2.6...3.17)
+cmake_policy(VERSION 2.6...3.18)
 #----------------------------------------------------------------
 # Generated CMake target import file.
 #----------------------------------------------------------------
@@ -62,7 +62,7 @@ add_library(OpenEXR::IlmImf SHARED IMPORTED)
 
 set_target_properties(OpenEXR::IlmImf PROPERTIES
   INTERFACE_COMPILE_DEFINITIONS "OPENEXR_DLL"
-  INTERFACE_COMPILE_FEATURES "cxx_std_17"
+  INTERFACE_COMPILE_FEATURES "cxx_std_20"
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
   INTERFACE_LINK_LIBRARIES "OpenEXR::IlmImfConfig;OpenEXR::IlmImfConfig;IlmBase::Iex;IlmBase::Half;IlmBase::Imath;IlmBase::IlmThread;ZLIB::ZLIB"
 )
@@ -72,7 +72,7 @@ add_library(OpenEXR::IlmImfUtil SHARED IMPORTED)
 
 set_target_properties(OpenEXR::IlmImfUtil PROPERTIES
   INTERFACE_COMPILE_DEFINITIONS "OPENEXR_DLL"
-  INTERFACE_COMPILE_FEATURES "cxx_std_17"
+  INTERFACE_COMPILE_FEATURES "cxx_std_20"
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
   INTERFACE_LINK_LIBRARIES "OpenEXR::IlmImfConfig;OpenEXR::IlmImf"
 )

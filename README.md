@@ -49,10 +49,18 @@ Precompiled version is provided in [Prebuilt](./Prebuilt). Libraries as well as 
 2. With settings compatible with the renderer to avoid possible conflicts. Currently, we have CMake scripts that handle the build settings/process for you.
 3. Try to build for dynamic linking to avoid conflicts between CRTs
 
+Note that cloning or downloading the repository, by default, will not include submodules. This will cause build errors since some library source is not even there. Use the following command to clone this repository with all submodules included:
+
+> git clone --recursive https://github.com/TzuChieh/Photon-v2-ThirdParty.git
+
+For already cloned repository, run the following command **in the repository's root directory**:
+
+> git submodule update --init --recursive
+
 ### Current Build Settings
 
 * Windows
-  * Visual Studio 2017
+  * Visual Studio 2019, x64
 * Linux
   * Ubuntu 18.04 with g++ 7.5.0
 * macOS

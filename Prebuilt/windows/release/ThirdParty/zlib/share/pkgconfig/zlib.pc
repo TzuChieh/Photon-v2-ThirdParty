@@ -1,8 +1,8 @@
-prefix=C:/Users/BlackCat/Desktop/Photon-v2-ThirdParty/build/ThirdParty/zlib
-exec_prefix=C:/Users/BlackCat/Desktop/Photon-v2-ThirdParty/build/ThirdParty/zlib
-libdir=C:/Users/BlackCat/Desktop/Photon-v2-ThirdParty/build/ThirdParty/zlib/lib
-sharedlibdir=C:/Users/BlackCat/Desktop/Photon-v2-ThirdParty/build/ThirdParty/zlib/lib
-includedir=C:/Users/BlackCat/Desktop/Photon-v2-ThirdParty/build/ThirdParty/zlib/include
+prefix=C:/dev/Photon-v2-ThirdParty/build/ThirdParty/zlib
+exec_prefix=C:/dev/Photon-v2-ThirdParty/build/ThirdParty/zlib
+libdir=C:/dev/Photon-v2-ThirdParty/build/ThirdParty/zlib/lib
+sharedlibdir=C:/dev/Photon-v2-ThirdParty/build/ThirdParty/zlib/lib
+includedir=C:/dev/Photon-v2-ThirdParty/build/ThirdParty/zlib/include
 
 Name: zlib
 Description: zlib compression library

@@ -1,7 +1,7 @@
-prefix=D:/dev/Photon-v2-ThirdParty/build/ThirdParty/glfw
+prefix=C:/dev/Photon-v2-ThirdParty/build/ThirdParty/glfw
 exec_prefix=${prefix}
-includedir=D:/dev/Photon-v2-ThirdParty/build/ThirdParty/glfw/include
-libdir=D:/dev/Photon-v2-ThirdParty/build/ThirdParty/glfw/lib
+includedir=C:/dev/Photon-v2-ThirdParty/build/ThirdParty/glfw/include
+libdir=C:/dev/Photon-v2-ThirdParty/build/ThirdParty/glfw/lib
 
 Name: GLFW
 Description: A multi-platform library for OpenGL, window and input
