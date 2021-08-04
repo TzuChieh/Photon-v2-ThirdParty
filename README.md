@@ -59,8 +59,11 @@ For already cloned repository, run the following command **in the repository's r
 
 ### Current Build Settings
 
+C++ standard in use: C++20
+Architecture: x64
+
 * Windows
-  * Visual Studio 2019, x64
+  * Visual Studio 2019, with Windows SDK 10.0 (10.0 = latest)
 * Linux
   * Ubuntu 18.04 with g++ 7.5.0
 * macOS
