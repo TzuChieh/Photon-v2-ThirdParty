@@ -16,8 +16,8 @@ endif()
 
 option(BUILD_SHARED_LIBS "Build as shared libraries if applicable." ON)
 
-# Compile with C++17 standard enabled
-set(CMAKE_CXX_STANDARD          17)
+# Compile with C++20 standard enabled
+set(CMAKE_CXX_STANDARD          20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # TODO: option for switching between static and dynamic linking
@@ -30,29 +30,30 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Using MSVC
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 
-    # use C++17 (VS usually do not pick up previous requests)
-    set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} /std:c++17")
+    # Use C++20 (VS usually do not pick up previous requests)
+    # FIXME: currently VS requires "latest" flag for C++20 features
+    set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} /std:c++latest")
 
-    # use PDB files for debugging, which also provides potential optimizations
+    # Use PDB files for debugging, which also provides potential optimizations
     set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} /Zi")
 
-    # use multithreaded compilation
+    # Use multithreaded compilation
     set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} /MP")
 
-    # statically link runtime lib to ensure 
+    # Statically link runtime lib to ensure 
     # set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
     # set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
 
 # Using GCC
 elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
 
-    # as a fallback when CMake version < 3.8.0 or for whatever reasons
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
+    # As a fallback when CMake version < 3.8.0 or for whatever reasons
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
 
 # Using regular Clang or AppleClang
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 
-    # TODO: enforce C++17 if previous requests have no use
+    # TODO: enforce C++20 if previous requests have no use
 
 endif()
 
