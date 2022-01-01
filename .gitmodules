@@ -25,3 +25,6 @@
 [submodule "glad"]
 	path = glad
 	url = https://github.com/TzuChieh/glad.git
+[submodule "concurrentqueue"]
+	path = concurrentqueue
+	url = https://github.com/TzuChieh/concurrentqueue.git

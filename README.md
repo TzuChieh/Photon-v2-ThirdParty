@@ -14,7 +14,7 @@ Header-only:
 Others:
 
 * [googletest](https://github.com/google/googletest)
-  * git commit hash `a868e618c0607259c63f37d948b72586a13922ff`
+  * git tag `v1.11.0`
   * [__custom fork__](https://github.com/TzuChieh/googletest/tree/photon)
 * [StackWalker](https://github.com/JochenKalmbach/StackWalker)
   * git commit hash `42e7a6e056a9e7aca911a7e9e54e2e4f90bc2652`
@@ -35,6 +35,9 @@ Others:
 * [imgui](https://github.com/ocornut/imgui)
   * git tag `v1.83`
   * [__custom fork__](https://github.com/TzuChieh/imgui/tree/photon)
+* [concurrentqueue](https://github.com/cameron314/concurrentqueue)
+  * git commit hash `9c44f36de1f0d8fac97a9e6aeb42409a95f7aa5d`
+  * [__custom fork__](https://github.com/TzuChieh/concurrentqueue/tree/photon)
 
 Tools:
 

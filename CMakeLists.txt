@@ -18,7 +18,8 @@ endif()
 option(BUILD_SHARED_LIBS "Build as shared libraries if applicable." ON)
 
 # Compile with C++20 standard enabled
-set(CMAKE_CXX_STANDARD          20)
+# FIXME: currently C++20 will be incomplete on these settings
+set(CMAKE_CXX_STANDARD          23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # TODO: option for switching between static and dynamic linking
@@ -71,15 +72,16 @@ endif()
 include(ExternalProject)
 include(GNUInstallDirs)
 
-set(STB_LIBRARY_NAME         "stb")
-set(ASIO_LIBRARY_NAME        "Asio")
-set(GOOGLETEST_LIBRARY_NAME  "googletest")
-set(ZLIB_LIBRARY_NAME        "zlib")
-set(OPENEXR_LIBRARY_NAME     "OpenEXR")
-set(STACKWALKER_LIBRARY_NAME "StackWalker")
-set(GLFW_LIBRARY_NAME        "glfw")
-set(GLAD_LIBRARY_NAME        "glad")
-set(IMGUI_LIBRARY_NAME       "imgui")
+set(STB_LIBRARY_NAME             "stb")
+set(ASIO_LIBRARY_NAME            "Asio")
+set(GOOGLETEST_LIBRARY_NAME      "googletest")
+set(ZLIB_LIBRARY_NAME            "zlib")
+set(OPENEXR_LIBRARY_NAME         "OpenEXR")
+set(STACKWALKER_LIBRARY_NAME     "StackWalker")
+set(GLFW_LIBRARY_NAME            "glfw")
+set(GLAD_LIBRARY_NAME            "glad")
+set(IMGUI_LIBRARY_NAME           "imgui")
+set(CONCURRENTQUEUE_LIBRARY_NAME "concurrentqueue")
 
 #------------------------------------------------------------------------------
 # stb
@@ -283,3 +285,19 @@ ExternalProject_Add(${GLAD_LIBRARY_NAME}
 file(COPY
     "${PROJECT_SOURCE_DIR}/${IMGUI_LIBRARY_NAME}/"
     DESTINATION "${THIRD_PARTY_INSTALL_DIR}/${IMGUI_LIBRARY_NAME}/")
+
+#------------------------------------------------------------------------------
+# concurrentqueue
+#------------------------------------------------------------------------------
+ExternalProject_Add(${CONCURRENTQUEUE_LIBRARY_NAME}
+    PREFIX         "${PROJECT_BINARY_DIR}/${CONCURRENTQUEUE_LIBRARY_NAME}"
+    BUILD_ALWAYS   ON
+    SOURCE_DIR     "${PROJECT_SOURCE_DIR}/${CONCURRENTQUEUE_LIBRARY_NAME}"
+    BINARY_DIR     "${PROJECT_BINARY_DIR}/${CONCURRENTQUEUE_LIBRARY_NAME}"
+    INSTALL_DIR    "${THIRD_PARTY_INSTALL_DIR}/${CONCURRENTQUEUE_LIBRARY_NAME}"
+    
+    CMAKE_CACHE_ARGS
+        -DBUILD_TESTING:BOOL=OFF
+        -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
+        
+    INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
