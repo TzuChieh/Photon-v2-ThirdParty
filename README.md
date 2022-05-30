@@ -14,7 +14,7 @@ Header-only:
 Others:
 
 * [googletest](https://github.com/google/googletest)
-  * git tag `v1.11.0`
+  * git commit hash `9d21db9e0a60a1ea61ec19331c9bc0dd33e907b1`
   * [__custom fork__](https://github.com/TzuChieh/googletest/tree/photon)
 * [StackWalker](https://github.com/JochenKalmbach/StackWalker)
   * git commit hash `42e7a6e056a9e7aca911a7e9e54e2e4f90bc2652`
