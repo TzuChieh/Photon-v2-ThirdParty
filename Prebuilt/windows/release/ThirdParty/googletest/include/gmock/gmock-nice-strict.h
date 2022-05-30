@@ -27,7 +27,6 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-
 // Implements class templates NiceMock, NaggyMock, and StrictMock.
 //
 // Given a mock class MockFoo that is created using Google Mock,
@@ -57,6 +56,9 @@
 // or "strict" modifier may not affect it, depending on the compiler.
 // In particular, nesting NiceMock, NaggyMock, and StrictMock is NOT
 // supported.
+
+// IWYU pragma: private, include "gmock/gmock.h"
+// IWYU pragma: friend gmock/.*
 
 #ifndef GOOGLEMOCK_INCLUDE_GMOCK_GMOCK_NICE_STRICT_H_
 #define GOOGLEMOCK_INCLUDE_GMOCK_GMOCK_NICE_STRICT_H_
@@ -167,7 +169,8 @@ class GTEST_INTERNAL_EMPTY_BASE_CLASS NiceMock
   }
 
  private:
-  GTEST_DISALLOW_COPY_AND_ASSIGN_(NiceMock);
+  NiceMock(const NiceMock&) = delete;
+  NiceMock& operator=(const NiceMock&) = delete;
 };
 
 template <class MockClass>
@@ -208,7 +211,8 @@ class GTEST_INTERNAL_EMPTY_BASE_CLASS NaggyMock
   }
 
  private:
-  GTEST_DISALLOW_COPY_AND_ASSIGN_(NaggyMock);
+  NaggyMock(const NaggyMock&) = delete;
+  NaggyMock& operator=(const NaggyMock&) = delete;
 };
 
 template <class MockClass>
@@ -249,7 +253,8 @@ class GTEST_INTERNAL_EMPTY_BASE_CLASS StrictMock
   }
 
  private:
-  GTEST_DISALLOW_COPY_AND_ASSIGN_(StrictMock);
+  StrictMock(const StrictMock&) = delete;
+  StrictMock& operator=(const StrictMock&) = delete;
 };
 
 #undef GTEST_INTERNAL_EMPTY_BASE_CLASS
