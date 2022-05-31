@@ -48,6 +48,9 @@
 
 namespace testing {
 
+// Photon: suppress C4251 warning, ref: https://github.com/google/googletest/pull/1750
+GTEST_DISABLE_MSC_WARNINGS_PUSH_(4251 /* class A needs to have dll-interface to be used by clients of class B */)
+
 // A class for indicating whether an assertion was successful.  When
 // the assertion wasn't successful, the AssertionResult object
 // remembers a non-empty message that describes how it failed.
@@ -216,6 +219,9 @@ class GTEST_API_ AssertionResult {
   // with test assertions.
   std::unique_ptr< ::std::string> message_;
 };
+
+// Photon: suppress C4251 warning, ref: https://github.com/google/googletest/pull/1750
+GTEST_DISABLE_MSC_WARNINGS_POP_()
 
 // Makes a successful assertion result.
 GTEST_API_ AssertionResult AssertionSuccess();
