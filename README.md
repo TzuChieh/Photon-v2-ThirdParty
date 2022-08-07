@@ -29,11 +29,11 @@ Others:
   * git tag `3.3.4`
   * [__custom fork__](https://github.com/TzuChieh/glfw/tree/photon)
 * [glad](https://github.com/Dav1dde/glad)
-  * we use the glad2 branch, git commit hash `994aa6e4506286131a1383b61c552bc940959917`
-  * see [our glad repo readme](https://github.com/TzuChieh/glad/tree/photon) for how the source is generated and corresponding settings in use
+  * We use the glad2 branch, git commit hash `994aa6e4506286131a1383b61c552bc940959917`
+  * See [our glad repo readme](https://github.com/TzuChieh/glad/tree/photon) for how the source is generated and corresponding settings in use
   * [__generated source__](https://github.com/TzuChieh/glad/tree/photon)
 * [imgui](https://github.com/ocornut/imgui)
-  * git tag `v1.83`
+  * We use the docking branch, git commit hash `ff1567e2406797cbd1a3ef3d716888d6c3a66bd7`
   * [__custom fork__](https://github.com/TzuChieh/imgui/tree/photon)
 * [concurrentqueue](https://github.com/cameron314/concurrentqueue)
   * git commit hash `9c44f36de1f0d8fac97a9e6aeb42409a95f7aa5d`
@@ -42,7 +42,7 @@ Others:
 Tools:
 
 * [pkg-config-lite](https://sourceforge.net/projects/pkgconfiglite/)
-  * version 0.28-1 (win32)
+  * Version 0.28-1 (win32)
 
 ## Build
 
