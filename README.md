@@ -29,11 +29,12 @@ Others:
   * git tag `3.3.4`
   * [__custom fork__](https://github.com/TzuChieh/glfw/tree/photon)
 * [glad](https://github.com/Dav1dde/glad)
-  * We use the glad2 branch, git commit hash `994aa6e4506286131a1383b61c552bc940959917`
+  * We use the `glad2` branch, git commit hash `b1051403cf81b984f9fc11cc5916adb5afd34766`
+  * The source code in our repo is generated--we do not include the source for the generator
   * See [our glad repo readme](https://github.com/TzuChieh/glad/tree/photon) for how the source is generated and corresponding settings in use
   * [__generated source__](https://github.com/TzuChieh/glad/tree/photon)
 * [imgui](https://github.com/ocornut/imgui)
-  * We use the docking branch, git commit hash `ff1567e2406797cbd1a3ef3d716888d6c3a66bd7`
+  * We use the `docking` branch, git commit hash `ff1567e2406797cbd1a3ef3d716888d6c3a66bd7`
   * [__custom fork__](https://github.com/TzuChieh/imgui/tree/photon)
 * [concurrentqueue](https://github.com/cameron314/concurrentqueue)
   * git commit hash `9c44f36de1f0d8fac97a9e6aeb42409a95f7aa5d`
