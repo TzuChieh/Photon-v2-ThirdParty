@@ -37,8 +37,11 @@ Others:
   * We use the `docking` branch, git commit hash `ff1567e2406797cbd1a3ef3d716888d6c3a66bd7`
   * [__custom fork__](https://github.com/TzuChieh/imgui/tree/photon)
 * [concurrentqueue](https://github.com/cameron314/concurrentqueue)
-  * git commit hash `9c44f36de1f0d8fac97a9e6aeb42409a95f7aa5d`
+  * git commit hash `810f6213a2ee3bbd0c2ff647c28996cfff84df06`
   * [__custom fork__](https://github.com/TzuChieh/concurrentqueue/tree/photon)
+* [json](https://github.com/nlohmann/json)
+  * git commit hash `6af826d0bdb55e4b69e3ad817576745335f243ca`
+  * [__custom fork__](https://github.com/TzuChieh/json/tree/photon)
 
 Tools:
 

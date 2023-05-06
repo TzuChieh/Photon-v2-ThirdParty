@@ -82,6 +82,7 @@ set(GLFW_LIBRARY_NAME            "glfw")
 set(GLAD_LIBRARY_NAME            "glad")
 set(IMGUI_LIBRARY_NAME           "imgui")
 set(CONCURRENTQUEUE_LIBRARY_NAME "concurrentqueue")
+set(JSON_LIBRARY_NAME            "json")
 
 #------------------------------------------------------------------------------
 # stb
@@ -303,3 +304,23 @@ ExternalProject_Add(${CONCURRENTQUEUE_LIBRARY_NAME}
         -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
         
     INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
+
+#------------------------------------------------------------------------------
+# json
+#------------------------------------------------------------------------------
+ExternalProject_Add(${JSON_LIBRARY_NAME}
+    PREFIX         "${PROJECT_BINARY_DIR}/${JSON_LIBRARY_NAME}"
+    BUILD_ALWAYS   ON
+    SOURCE_DIR     "${PROJECT_SOURCE_DIR}/${JSON_LIBRARY_NAME}"
+    BINARY_DIR     "${PROJECT_BINARY_DIR}/${JSON_LIBRARY_NAME}"
+    INSTALL_DIR    "${THIRD_PARTY_INSTALL_DIR}/${JSON_LIBRARY_NAME}"
+    
+    CMAKE_CACHE_ARGS
+        -DBUILD_TESTING:BOOL=OFF
+        -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
+        -DJSON_BuildTests:BOOL=OFF
+        -DJSON_CI:BOOL=OFF
+        -DJSON_Install:BOOL=ON
+        
+    INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
+    
