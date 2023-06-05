@@ -34,7 +34,7 @@ Others:
   * See [our glad repo readme](https://github.com/TzuChieh/glad/tree/photon) for how the source is generated and corresponding settings in use
   * [__generated source__](https://github.com/TzuChieh/glad/tree/photon)
 * [imgui](https://github.com/ocornut/imgui)
-  * We use the `docking` branch, git commit hash `ff1567e2406797cbd1a3ef3d716888d6c3a66bd7`
+  * We use the `docking` branch, git commit hash `8fd0a041355e3cfc6556bbe1e00f262d9a897946`
   * [__custom fork__](https://github.com/TzuChieh/imgui/tree/photon)
 * [concurrentqueue](https://github.com/cameron314/concurrentqueue)
   * git commit hash `810f6213a2ee3bbd0c2ff647c28996cfff84df06`
