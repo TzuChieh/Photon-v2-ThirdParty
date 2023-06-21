@@ -116,6 +116,10 @@ ExternalProject_Add(${GOOGLETEST_LIBRARY_NAME}
         -DCMAKE_CXX_STANDARD:STRING=${CMAKE_CXX_STANDARD}
         -DCMAKE_CXX_STANDARD_REQUIRED:BOOL=ON
         -DCMAKE_CXX_FLAGS:STRING=${CMAKE_CXX_FLAGS}
+
+        # May not be set to empty, possibly related https://github.com/google/googletest/pull/3732
+        -DCMAKE_DEBUG_POSTFIX:STRING=_d
+
         -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
         -DCMAKE_SYSTEM_VERSION:INTERNAL=${CMAKE_SYSTEM_VERSION}
         -Dgtest_force_shared_crt:BOOL=ON
