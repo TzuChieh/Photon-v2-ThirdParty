@@ -1,0 +1,17 @@
+##
+## SPDX-License-Identifier: BSD-3-Clause
+## Copyright Contributors to the OpenEXR Project.
+##
+
+prefix=D:/dev/Photon-v2-ThirdParty/build/ThirdParty/OpenEXR
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+libsuffix=
+Name: IlmBase
+Description: Base math and exception libraries
+Version: 2.4.0
+Requires:
+Conflicts:
+Libs: -L${libdir} -lImath${libsuffix} -lHalf${libsuffix} -lIex${libsuffix} -lIexMath${libsuffix} -lIlmThread${libsuffix} 
+Cflags:  -I${includedir} -I${includedir}/OpenEXR
