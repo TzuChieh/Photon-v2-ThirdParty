@@ -16,9 +16,6 @@ Others:
 * [googletest](https://github.com/google/googletest)
   * git commit hash `9d21db9e0a60a1ea61ec19331c9bc0dd33e907b1`
   * [__custom fork__](https://github.com/TzuChieh/googletest/tree/photon)
-* [StackWalker](https://github.com/JochenKalmbach/StackWalker)
-  * git commit hash `42e7a6e056a9e7aca911a7e9e54e2e4f90bc2652`
-  * [__custom fork__](https://github.com/TzuChieh/StackWalker/tree/photon)
 * [zlib](https://github.com/madler/zlib)
   * git tag `v1.2.11`
   * [__custom fork__](https://github.com/TzuChieh/zlib/tree/photon)
@@ -63,6 +60,16 @@ Note that cloning or downloading the repository, by default, will not include su
 For already cloned repository, run the following command **in the repository's root directory**:
 
 > git submodule update --init --recursive
+
+### Building a Different Branch
+
+As submodules are, in fact, separate git repositories (and this repository simply links to them), directly checkout to other branch will not work as expected (using git version = `2.31.1` at the time of speaking), even with the use of `git checkout --recurse-submodules <branch-name>`. A preferable approach is similar to how the submodules are updated:
+
+1. Clone normally with `git clone https://github.com/TzuChieh/Photon-v2-ThirdParty.git`
+2. Checkout normally with `git checkout <branch-name>`
+3. Populate the submodules with `git submodule update --init --recursive`
+
+Now the libraries can be built as usual on the chosen branch.
 
 ### Current Build Settings
 
