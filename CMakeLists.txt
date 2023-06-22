@@ -77,7 +77,6 @@ set(ASIO_LIBRARY_NAME            "Asio")
 set(GOOGLETEST_LIBRARY_NAME      "googletest")
 set(ZLIB_LIBRARY_NAME            "zlib")
 set(OPENEXR_LIBRARY_NAME         "OpenEXR")
-set(STACKWALKER_LIBRARY_NAME     "StackWalker")
 set(GLFW_LIBRARY_NAME            "glfw")
 set(GLAD_LIBRARY_NAME            "glad")
 set(IMGUI_LIBRARY_NAME           "imgui")
@@ -211,30 +210,6 @@ ExternalProject_Add(${OPENEXR_LIBRARY_NAME}
         -DZLIB_ROOT:STRING=${ZLIB_LIBRARY_INSTALL_DIR}
         
     INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
-
-#------------------------------------------------------------------------------
-# StackWalker
-#------------------------------------------------------------------------------
-if(WIN32)
-    ExternalProject_Add(${STACKWALKER_LIBRARY_NAME}
-        PREFIX         "${PROJECT_BINARY_DIR}/${STACKWALKER_LIBRARY_NAME}"
-        BUILD_ALWAYS   ON
-        SOURCE_DIR     "${PROJECT_SOURCE_DIR}/${STACKWALKER_LIBRARY_NAME}"
-        BINARY_DIR     "${PROJECT_BINARY_DIR}/${STACKWALKER_LIBRARY_NAME}"
-        INSTALL_DIR    "${THIRD_PARTY_INSTALL_DIR}/${STACKWALKER_LIBRARY_NAME}"
-        
-        CMAKE_CACHE_ARGS
-            -DBUILD_TESTING:BOOL=OFF
-            -DBUILD_SHARED_LIBS:BOOL=ON
-            -DCMAKE_CXX_STANDARD:STRING=${CMAKE_CXX_STANDARD}
-            -DCMAKE_CXX_STANDARD_REQUIRED:BOOL=ON
-            -DCMAKE_CXX_FLAGS:STRING=${CMAKE_CXX_FLAGS}
-            -DCMAKE_SYSTEM_VERSION:INTERNAL=${CMAKE_SYSTEM_VERSION}
-            -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
-            -DStackWalker_DISABLE_TESTS:BOOL=ON
-            
-        INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
-endif()
 
 #------------------------------------------------------------------------------
 # glfw
