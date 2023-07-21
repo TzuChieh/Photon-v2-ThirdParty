@@ -28,3 +28,6 @@
 [submodule "ImGui/imgui"]
 	path = ImGui/imgui
 	url = https://github.com/TzuChieh/imgui.git
+[submodule "ImGui/implot"]
+	path = ImGui/implot
+	url = https://github.com/TzuChieh/implot.git

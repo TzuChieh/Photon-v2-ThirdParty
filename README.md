@@ -33,6 +33,9 @@ Others:
 * [imgui](https://github.com/ocornut/imgui)
   * We use the `docking` branch, git commit hash `8fd0a041355e3cfc6556bbe1e00f262d9a897946`
   * [__custom fork__](https://github.com/TzuChieh/imgui/tree/photon)
+* [implot](https://github.com/epezent/implot)
+  * We use `v0.15` release, git commit hash `cc5e1da`
+  * [__custom fork__](https://github.com/TzuChieh/implot/tree/photon)
 * [concurrentqueue](https://github.com/cameron314/concurrentqueue)
   * git commit hash `810f6213a2ee3bbd0c2ff647c28996cfff84df06`
   * [__custom fork__](https://github.com/TzuChieh/concurrentqueue/tree/photon)
