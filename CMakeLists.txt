@@ -79,7 +79,7 @@ set(ZLIB_LIBRARY_NAME            "zlib")
 set(OPENEXR_LIBRARY_NAME         "OpenEXR")
 set(GLFW_LIBRARY_NAME            "glfw")
 set(GLAD_LIBRARY_NAME            "glad")
-set(IMGUI_LIBRARY_NAME           "imgui")
+set(IMGUI_LIBRARIES_NAME         "ImGui")
 set(CONCURRENTQUEUE_LIBRARY_NAME "concurrentqueue")
 set(JSON_LIBRARY_NAME            "json")
 
@@ -258,15 +258,20 @@ ExternalProject_Add(${GLAD_LIBRARY_NAME}
     INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
 
 #------------------------------------------------------------------------------
-# imgui
+# ImGui related libraries
 #------------------------------------------------------------------------------
 # imgui is designed for projects to include the library source into your
-# project directly. We simply copy its source into install directory. This is
-# also easier to maintain as they recommend to use latest commits and we do not
-# need to pre-compile any binaries by ourselves.
+# project directly. This is also easier to maintain as they recommend to use 
+# latest commits and we do not need to pre-compile any binaries by ourselves.
+#
+# implot follows imgui's integration principle.
+#
+# Due to the above reasons, We simply copy their source into install directory
+# (the source are conveniently placed together under "./ImGui/" directory).
+#
 file(COPY
-    "${PROJECT_SOURCE_DIR}/${IMGUI_LIBRARY_NAME}/"
-    DESTINATION "${THIRD_PARTY_INSTALL_DIR}/${IMGUI_LIBRARY_NAME}/")
+    "${PROJECT_SOURCE_DIR}/${IMGUI_LIBRARIES_NAME}/"
+    DESTINATION "${THIRD_PARTY_INSTALL_DIR}/${IMGUI_LIBRARIES_NAME}/")
 
 #------------------------------------------------------------------------------
 # concurrentqueue
