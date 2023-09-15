@@ -82,6 +82,7 @@ set(GLAD_LIBRARY_NAME            "glad")
 set(IMGUI_LIBRARIES_NAME         "ImGui")
 set(CONCURRENTQUEUE_LIBRARY_NAME "concurrentqueue")
 set(JSON_LIBRARY_NAME            "json")
+set(TRACY_LIBRARY_NAME           "tracy")
 
 #------------------------------------------------------------------------------
 # stb
@@ -305,6 +306,28 @@ ExternalProject_Add(${JSON_LIBRARY_NAME}
         -DJSON_BuildTests:BOOL=OFF
         -DJSON_CI:BOOL=OFF
         -DJSON_Install:BOOL=ON
+        
+    INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
+
+#------------------------------------------------------------------------------
+# tracy
+#------------------------------------------------------------------------------
+ExternalProject_Add(${TRACY_LIBRARY_NAME}
+    PREFIX         "${PROJECT_BINARY_DIR}/${TRACY_LIBRARY_NAME}"
+    BUILD_ALWAYS   ON
+    SOURCE_DIR     "${PROJECT_SOURCE_DIR}/${TRACY_LIBRARY_NAME}"
+    BINARY_DIR     "${PROJECT_BINARY_DIR}/${TRACY_LIBRARY_NAME}"
+    INSTALL_DIR    "${THIRD_PARTY_INSTALL_DIR}/${TRACY_LIBRARY_NAME}"
+    
+    CMAKE_CACHE_ARGS
+        -DBUILD_TESTING:BOOL=OFF
+        -DBUILD_SHARED_LIBS:BOOL=ON
+        -DCMAKE_CXX_STANDARD:STRING=${CMAKE_CXX_STANDARD}
+        -DCMAKE_CXX_STANDARD_REQUIRED:BOOL=ON
+        -DCMAKE_CXX_FLAGS:STRING=${CMAKE_CXX_FLAGS}
+        -DCMAKE_DEBUG_POSTFIX:STRING=_d
+        -DCMAKE_SYSTEM_VERSION:INTERNAL=${CMAKE_SYSTEM_VERSION}
+        -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
         
     INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
     
