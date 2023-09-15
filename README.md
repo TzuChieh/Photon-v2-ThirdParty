@@ -50,6 +50,9 @@ Tools (in the [Program](./Program) folder):
 
 * [pkg-config-lite](https://sourceforge.net/projects/pkgconfiglite/)
   * Version 0.28-1 (win32)
+* [Tracy Profiler](https://github.com/wolfpld/tracy/releases/tag/v0.9.1)
+  * Version v0.9.1 (win32)
+  * Must match the version of [tracy client](./tracy) we use
 
 ## Build
 
