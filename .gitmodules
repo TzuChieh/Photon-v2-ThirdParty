@@ -31,3 +31,6 @@
 [submodule "ImGui/implot"]
 	path = ImGui/implot
 	url = https://github.com/TzuChieh/implot.git
+[submodule "tracy"]
+	path = tracy
+	url = https://github.com/TzuChieh/tracy.git

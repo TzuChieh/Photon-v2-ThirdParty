@@ -10,6 +10,12 @@ Header-only:
 * [Asio](https://github.com/chriskohlhoff/asio)
   * git tag `asio-1-14-0`
   * [__custom fork__](https://github.com/TzuChieh/asio/tree/photon)
+* [concurrentqueue](https://github.com/cameron314/concurrentqueue)
+  * git commit hash `810f6213a2ee3bbd0c2ff647c28996cfff84df06`
+  * [__custom fork__](https://github.com/TzuChieh/concurrentqueue/tree/photon)
+* [json](https://github.com/nlohmann/json)
+  * git commit hash `6af826d0bdb55e4b69e3ad817576745335f243ca`
+  * [__custom fork__](https://github.com/TzuChieh/json/tree/photon)
 
 Others:
 
@@ -36,12 +42,9 @@ Others:
 * [implot](https://github.com/epezent/implot)
   * We use `v0.15` release, git commit hash `cc5e1da`
   * [__custom fork__](https://github.com/TzuChieh/implot/tree/photon)
-* [concurrentqueue](https://github.com/cameron314/concurrentqueue)
-  * git commit hash `810f6213a2ee3bbd0c2ff647c28996cfff84df06`
-  * [__custom fork__](https://github.com/TzuChieh/concurrentqueue/tree/photon)
-* [json](https://github.com/nlohmann/json)
-  * git commit hash `6af826d0bdb55e4b69e3ad817576745335f243ca`
-  * [__custom fork__](https://github.com/TzuChieh/json/tree/photon)
+* [tracy](https://github.com/wolfpld/tracy)
+  * We use `v0.9.1` release, git commit hash `897aec5`
+  * [__custom fork__](https://github.com/TzuChieh/tracy/tree/photon)
 
 Tools:
 
