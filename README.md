@@ -46,7 +46,7 @@ Others:
   * We use `v0.9.1` release, git commit hash `897aec5`
   * [__custom fork__](https://github.com/TzuChieh/tracy/tree/photon)
 
-Tools:
+Tools (in the [Program](./Program) folder):
 
 * [pkg-config-lite](https://sourceforge.net/projects/pkgconfiglite/)
   * Version 0.28-1 (win32)
