@@ -85,7 +85,7 @@ set(JSON_LIBRARY_NAME            "json")
 set(TRACY_LIBRARY_NAME           "tracy")
 
 #------------------------------------------------------------------------------
-# stb
+# stb (header-only)
 #------------------------------------------------------------------------------
 ExternalProject_Add(${STB_LIBRARY_NAME}
     PREFIX         "${PROJECT_BINARY_DIR}/${STB_LIBRARY_NAME}"
@@ -127,7 +127,7 @@ ExternalProject_Add(${GOOGLETEST_LIBRARY_NAME}
     INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
 
 #------------------------------------------------------------------------------
-# Asio
+# Asio (header-only)
 #------------------------------------------------------------------------------
 ExternalProject_Add(${ASIO_LIBRARY_NAME}
     PREFIX         "${PROJECT_BINARY_DIR}/${ASIO_LIBRARY_NAME}"
@@ -228,6 +228,7 @@ ExternalProject_Add(${GLFW_LIBRARY_NAME}
         -DCMAKE_CXX_STANDARD:STRING=${CMAKE_CXX_STANDARD}
         -DCMAKE_CXX_STANDARD_REQUIRED:BOOL=ON
         -DCMAKE_CXX_FLAGS:STRING=${CMAKE_CXX_FLAGS}
+        -DCMAKE_DEBUG_POSTFIX:STRING=_d
         -DCMAKE_SYSTEM_VERSION:INTERNAL=${CMAKE_SYSTEM_VERSION}
         -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
         -DGLFW_BUILD_EXAMPLES:BOOL=OFF
@@ -253,6 +254,7 @@ ExternalProject_Add(${GLAD_LIBRARY_NAME}
         -DCMAKE_CXX_STANDARD:STRING=${CMAKE_CXX_STANDARD}
         -DCMAKE_CXX_STANDARD_REQUIRED:BOOL=ON
         -DCMAKE_CXX_FLAGS:STRING=${CMAKE_CXX_FLAGS}
+        -DCMAKE_DEBUG_POSTFIX:STRING=_d
         -DCMAKE_SYSTEM_VERSION:INTERNAL=${CMAKE_SYSTEM_VERSION}
         -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
         
@@ -275,7 +277,7 @@ file(COPY
     DESTINATION "${THIRD_PARTY_INSTALL_DIR}/${IMGUI_LIBRARIES_NAME}/")
 
 #------------------------------------------------------------------------------
-# concurrentqueue
+# concurrentqueue (header-only)
 #------------------------------------------------------------------------------
 ExternalProject_Add(${CONCURRENTQUEUE_LIBRARY_NAME}
     PREFIX         "${PROJECT_BINARY_DIR}/${CONCURRENTQUEUE_LIBRARY_NAME}"
@@ -291,7 +293,7 @@ ExternalProject_Add(${CONCURRENTQUEUE_LIBRARY_NAME}
     INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
 
 #------------------------------------------------------------------------------
-# json
+# json (header-only)
 #------------------------------------------------------------------------------
 ExternalProject_Add(${JSON_LIBRARY_NAME}
     PREFIX         "${PROJECT_BINARY_DIR}/${JSON_LIBRARY_NAME}"
