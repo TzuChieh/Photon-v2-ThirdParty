@@ -26,7 +26,7 @@ Others:
   * git tag `v1.2.11`
   * [__custom fork__](https://github.com/TzuChieh/zlib/tree/photon)
 * [OpenEXR](https://github.com/openexr/openexr)
-  * git commit hash `e23fdf6e02dbd8157b1d468143a82f6632781dee`
+  * git tag `v3.2.4`
   * [__custom fork__](https://github.com/TzuChieh/openexr/tree/photon)
 * [glfw](https://github.com/glfw/glfw)
   * git tag `3.3.4`
