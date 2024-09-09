@@ -17,13 +17,13 @@ endif()
 
 option(BUILD_SHARED_LIBS "Build as shared libraries if applicable." ON)
 
+# Compile with C++23 standard enabled
+set(CMAKE_CXX_STANDARD          23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 #------------------------------------------------------------------------------
 # Set suitable CMAKE_CXX_FLAGS
 #------------------------------------------------------------------------------
-
-# Note: We do not use standard `CMAKE_CXX_STANDARD` and `CMAKE_CXX_STANDARD_REQUIRED`
-# settings since their behavior is depending on the CMake version in use. We set 
-# appropriate flags manually and only use standard variables as a fallback.
 
 # Using MSVC
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
@@ -52,13 +52,6 @@ elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     # Use C++23
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++23")
 
-else()
-    message(WARNING
-        "Unknown compiler ID <${CMAKE_CXX_COMPILER_ID}>, unable to set specific flags.")
-
-    # Compile with C++23 standard enabled
-    set(CMAKE_CXX_STANDARD          23)
-    set(CMAKE_CXX_STANDARD_REQUIRED ON)
 endif()
 
 if(WIN32)
