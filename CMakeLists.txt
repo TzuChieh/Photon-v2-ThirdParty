@@ -17,23 +17,21 @@ endif()
 
 option(BUILD_SHARED_LIBS "Build as shared libraries if applicable." ON)
 
-# Compile with C++20 standard enabled
-# FIXME: currently C++20 will be incomplete on these settings
-set(CMAKE_CXX_STANDARD          23)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-# TODO: option for switching between static and dynamic linking
-# TODO: add g++/clang MT MD equivalent flags?
-
 #------------------------------------------------------------------------------
 # Set suitable CMAKE_CXX_FLAGS
 #------------------------------------------------------------------------------
 
+# Note: We do not use standard `CMAKE_CXX_STANDARD` and `CMAKE_CXX_STANDARD_REQUIRED`
+# settings since their behavior is depending on the CMake version in use. We set 
+# appropriate flags manually and only use standard variables as a fallback.
+
 # Using MSVC
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 
-    # Use C++20 (VS usually do not pick up previous requests)
-    # FIXME: currently VS requires "latest" flag for C++20 features
+    # Use C++23
+    # If this does not work, you should consider using `/std:c++latest` or other flags
+    # (VS does not fully support all C++23 features on VS 2022 v17.10.1)
+    # set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} /std:c++23")
     set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} /std:c++latest")
 
     # Use PDB files for debugging, which also provides potential optimizations
@@ -42,21 +40,25 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
     # Use multithreaded compilation
     set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} /MP")
 
-    # Statically link runtime lib to ensure 
-    # set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
-    # set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
-
 # Using GCC
 elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
 
-    # As a fallback when CMake version < 3.8.0 or for whatever reasons
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
+    # Use C++23
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++23")
 
 # Using regular Clang or AppleClang
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 
-    # TODO: enforce C++20 if previous requests have no use
+    # Use C++23
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++23")
 
+else()
+    message(WARNING
+        "Unknown compiler ID <${CMAKE_CXX_COMPILER_ID}>, unable to set specific flags.")
+
+    # Compile with C++23 standard enabled
+    set(CMAKE_CXX_STANDARD          23)
+    set(CMAKE_CXX_STANDARD_REQUIRED ON)
 endif()
 
 if(WIN32)

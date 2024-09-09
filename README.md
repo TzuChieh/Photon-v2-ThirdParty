@@ -82,18 +82,19 @@ Now the libraries can be built as usual on the chosen branch.
 
 ### Current Build Settings
 
-C++ standard in use: C++20
+C++ standard in use: C++23
 Architecture: x64
+Linkage: Shared
 
 * Windows
-  * Visual Studio 2019, with Windows SDK 10.0 (10.0 = latest)
+  * Visual Studio 2022, with Windows SDK 10.0 (10.0 = latest)
 * Linux
-  * Ubuntu 18.04 with g++ 7.5.0
+  * Ubuntu 22.04 with g++ 13.2.0
 * macOS
   * High Sierra 10.13 with Apple LLVM version 10.0.0 (clang-1000.10.44.4), target: x86_64-apple-darwin17.0.0, thread model: posix
   * When it comes to apple's toolchain versioning, [this](https://gist.github.com/yamaya/2924292) is a good reference
 
-Using similar environment will ensure the libraries work well with the render engine and easier to debug if you got into any trouble using Photon-v2. Report any errors encountered and I will be there to help you!
+We use shared libraries so the prebuilt binaries can be easily transferred and updated without potential conflicts. Using a similar environment to build the libraries will ensure the libraries work well with the render engine and easier to debug if you got into any trouble using Photon-v2. Report any errors encountered and I will be there to help you!
 
 ## License
 
