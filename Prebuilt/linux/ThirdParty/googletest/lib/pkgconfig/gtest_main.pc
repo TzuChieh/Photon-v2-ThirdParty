@@ -1,0 +1,11 @@
+prefix=/home/aa0189306/Desktop/Photon-v2-ThirdParty/build/ThirdParty/googletest
+libdir=/home/aa0189306/Desktop/Photon-v2-ThirdParty/build/ThirdParty/googletest/lib
+includedir=/home/aa0189306/Desktop/Photon-v2-ThirdParty/build/ThirdParty/googletest/include
+
+Name: gtest_main
+Description: GoogleTest (with main() function)
+Version: 1.11.0
+URL: https://github.com/google/googletest
+Requires: gtest = 1.11.0
+Libs: -L${libdir} -lgtest_main 
+Cflags: -I${includedir} -DGTEST_HAS_PTHREAD=1
