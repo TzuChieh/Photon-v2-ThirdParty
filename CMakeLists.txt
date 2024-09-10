@@ -29,9 +29,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 
     # Use C++23
-    # If this does not work, you should consider using `/std:c++latest` or other flags
-    # (VS does not fully support all C++23 features on VS 2022 v17.10.1)
     # set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} /std:c++23")
+    # Use `/std:c++latest` as VS does not fully support all C++23 features on VS 2022 v17.10.1)
     set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} /std:c++latest")
 
     # Use PDB files for debugging, which also provides potential optimizations
@@ -44,7 +43,9 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
 
     # Use C++23
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++23")
+    # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++23")
+    # Use `-std=c++2b` as g++ 13.2.0 does not fully support all C++23 features
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++2b")
 
 # Using regular Clang or AppleClang
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
