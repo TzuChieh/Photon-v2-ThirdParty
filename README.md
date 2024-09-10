@@ -22,9 +22,6 @@ Others:
 * [googletest](https://github.com/google/googletest)
   * git commit hash `9d21db9e0a60a1ea61ec19331c9bc0dd33e907b1`
   * [__custom fork__](https://github.com/TzuChieh/googletest/tree/photon)
-* [zlib](https://github.com/madler/zlib)
-  * git tag `v1.2.11`
-  * [__custom fork__](https://github.com/TzuChieh/zlib/tree/photon)
 * [OpenEXR](https://github.com/openexr/openexr)
   * git tag `v3.2.4`
   * [__custom fork__](https://github.com/TzuChieh/openexr/tree/photon)

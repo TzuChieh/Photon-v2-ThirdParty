@@ -70,7 +70,6 @@ include(GNUInstallDirs)
 set(STB_LIBRARY_NAME             "stb")
 set(ASIO_LIBRARY_NAME            "Asio")
 set(GOOGLETEST_LIBRARY_NAME      "googletest")
-set(ZLIB_LIBRARY_NAME            "zlib")
 set(OPENEXR_LIBRARY_NAME         "OpenEXR")
 set(GLFW_LIBRARY_NAME            "glfw")
 set(GLAD_LIBRARY_NAME            "glad")
@@ -78,6 +77,10 @@ set(IMGUI_LIBRARIES_NAME         "ImGui")
 set(CONCURRENTQUEUE_LIBRARY_NAME "concurrentqueue")
 set(JSON_LIBRARY_NAME            "json")
 set(TRACY_LIBRARY_NAME           "tracy")
+
+# The following sections are configuring CMake settings for third-party libraries.
+# If a library depends on another library, use `ExternalProject_Add()`'s `DEPENDS`
+# option to specify inter dependencies.
 
 #------------------------------------------------------------------------------
 # stb (header-only)
@@ -138,47 +141,9 @@ ExternalProject_Add(${ASIO_LIBRARY_NAME}
     INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
 
 #------------------------------------------------------------------------------
-# zlib
-#------------------------------------------------------------------------------
-set(ZLIB_COPIED_REPO_SRC_DIR "${PROJECT_BINARY_DIR}/zlib_copied_repo/")
-set(ZLIB_COPIED_REPO_BIN_DIR "${PROJECT_BINARY_DIR}/zlib_copied_repo_build/")
-set(ZLIB_LIBRARY_INSTALL_DIR "${THIRD_PARTY_INSTALL_DIR}/${ZLIB_LIBRARY_NAME}")
-
-# Using a copied repository of zlib since zlib may modify its own source
-# during configuration stage (which pollutes the source tree as changes will 
-# be reflected in next commit and may not be reconfigured next time since the 
-# original zonf.h has already gone/renamed to zconf.h.included).
-file(COPY
-    "./zlib/"
-    DESTINATION ${ZLIB_COPIED_REPO_SRC_DIR})
-
-# TODO: what if the user want to link to static version of zlib (zlibstatic)?
-#       possibly check for flags and make that a cmake option
-
-ExternalProject_Add(${ZLIB_LIBRARY_NAME}
-    PREFIX         "${ZLIB_COPIED_REPO_BIN_DIR}"
-    BUILD_ALWAYS   ON
-    SOURCE_DIR     "${ZLIB_COPIED_REPO_SRC_DIR}"
-    BINARY_DIR     "${ZLIB_COPIED_REPO_BIN_DIR}"
-    INSTALL_DIR    "${ZLIB_LIBRARY_INSTALL_DIR}"
-    
-    CMAKE_CACHE_ARGS
-        -DBUILD_TESTING:BOOL=OFF
-        -DBUILD_SHARED_LIBS:BOOL=ON
-        -DCMAKE_CXX_STANDARD:STRING=${CMAKE_CXX_STANDARD}
-        -DCMAKE_CXX_STANDARD_REQUIRED:BOOL=ON
-        -DCMAKE_CXX_FLAGS:STRING=${CMAKE_CXX_FLAGS}
-        -DCMAKE_SYSTEM_VERSION:INTERNAL=${CMAKE_SYSTEM_VERSION}
-        -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
-        
-    INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
-
-#------------------------------------------------------------------------------
 # OpenEXR
 #------------------------------------------------------------------------------
 ExternalProject_Add(${OPENEXR_LIBRARY_NAME}
-    DEPENDS        ${ZLIB_LIBRARY_NAME}
-
     PREFIX         "${PROJECT_BINARY_DIR}/${OPENEXR_LIBRARY_NAME}"
     BUILD_ALWAYS   ON
     SOURCE_DIR     "${PROJECT_SOURCE_DIR}/${OPENEXR_LIBRARY_NAME}"
@@ -187,23 +152,18 @@ ExternalProject_Add(${OPENEXR_LIBRARY_NAME}
     
     CMAKE_CACHE_ARGS
         -DBUILD_TESTING:BOOL=OFF
+        -DOPENEXR_BUILD_TOOLS:BOOL=OFF
+        -DOPENEXR_BUILD_EXAMPLES:BOOL=OFF
         -DBUILD_SHARED_LIBS:BOOL=ON
         -DCMAKE_CXX_STANDARD:STRING=${CMAKE_CXX_STANDARD}
         -DCMAKE_CXX_STANDARD_REQUIRED:BOOL=ON
         -DCMAKE_CXX_FLAGS:STRING=${CMAKE_CXX_FLAGS}
         -DCMAKE_SYSTEM_VERSION:INTERNAL=${CMAKE_SYSTEM_VERSION}
         -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
+        -DIMATH_INSTALL_PKG_CONFIG:BOOL=ON
         -DOPENEXR_INSTALL_PKG_CONFIG:BOOL=ON
-        -DILMBASE_INSTALL_PKG_CONFIG:BOOL=ON
-        -DPYILMBASE_ENABLE:BOOL=OFF
-        -DPYILMBASE_ENABLE:BOOL=OFF
-        -DOPENEXR_BUILD_UTILS:BOOL=OFF
-        -DOPENEXR_VIEWERS_ENABLE:BOOL=OFF
-        -DILMBASE_OUTPUT_SUBDIR:STRING=
         -DOPENEXR_OUTPUT_SUBDIR:STRING=
-        -DILMBASE_LIB_SUFFIX:STRING=
         -DOPENEXR_LIB_SUFFIX:STRING=
-        -DZLIB_ROOT:STRING=${ZLIB_LIBRARY_INSTALL_DIR}
         
     INSTALL_COMMAND ${CMAKE_COMMAND} --install <BINARY_DIR> --config $<CONFIG> --prefix <INSTALL_DIR>)
 
