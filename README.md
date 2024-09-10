@@ -27,6 +27,7 @@ Others:
   * [__custom fork__](https://github.com/TzuChieh/openexr/tree/photon)
 * [glfw](https://github.com/glfw/glfw)
   * git tag `3.3.4`
+  * Building on Linux requires the following packages: `libwayland-dev`, `libxkbcommon-dev`, `xorg-dev`. See the [GLFW documentation](https://www.glfw.org/docs/latest/compile.html) for more information.
   * [__custom fork__](https://github.com/TzuChieh/glfw/tree/photon)
 * [glad](https://github.com/Dav1dde/glad)
   * We use the `glad2` branch, git commit hash `b1051403cf81b984f9fc11cc5916adb5afd34766`
