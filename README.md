@@ -87,7 +87,7 @@ Linkage: Shared
 * Windows
   * Visual Studio 2022, with Windows SDK 10.0 (10.0 = latest)
 * Linux
-  * Ubuntu 22.04 with g++ 13.2.0
+  * Ubuntu 24.04 with g++ 14.0.1 and gcc 14.0.1
 * macOS
   * High Sierra 10.13 with Apple LLVM version 10.0.0 (clang-1000.10.44.4), target: x86_64-apple-darwin17.0.0, thread model: posix
   * When it comes to apple's toolchain versioning, [this](https://gist.github.com/yamaya/2924292) is a good reference
