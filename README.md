@@ -80,10 +80,9 @@ Now the libraries can be built as usual on the chosen branch.
 
 ### Current Build Settings
 
-C++ standard in use: C++23
-Architecture: x64
-Linkage: Shared
-
+* C++ standard in use: C++23
+* Architecture: x64
+* Linkage: Shared
 * Windows
   * Visual Studio 2022, with Windows SDK 10.0 (10.0 = latest)
 * Linux
