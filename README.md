@@ -14,7 +14,7 @@ Header-only:
   * git commit hash `810f6213a2ee3bbd0c2ff647c28996cfff84df06`
   * [__custom fork__](https://github.com/TzuChieh/concurrentqueue/tree/photon)
 * [json](https://github.com/nlohmann/json)
-  * git commit hash `6af826d0bdb55e4b69e3ad817576745335f243ca`
+  * git tag `v3.11.3`
   * [__custom fork__](https://github.com/TzuChieh/json/tree/photon)
 
 Others:
