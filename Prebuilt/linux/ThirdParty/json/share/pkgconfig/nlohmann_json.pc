@@ -1,4 +1,4 @@
 Name: nlohmann_json
 Description: JSON for Modern C++
-Version: 3.11.2
+Version: 3.11.3
 Cflags: -I/home/aa0189306/Desktop/Photon-v2-ThirdParty/build/ThirdParty/json/include
