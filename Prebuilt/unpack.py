@@ -15,5 +15,6 @@ for prebuilt_type in prebuilt_types:
         symlink_src_to_dst = json.loads(meta_file.read())
 
     for symlink_src, symlink_dst in symlink_src_to_dst.items():
+        Path(symlink_src).unlink()
         Path(symlink_src).symlink_to(Path(symlink_dst))
     print(f"restored {len(symlink_src_to_dst)} symlinks for {prebuilt_type}")
