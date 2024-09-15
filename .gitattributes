@@ -1,0 +1,6 @@
+# Prevent git LFS store prebuilt binaries as pointers/links
+/Prebuilt/**/*.lib binary
+/Prebuilt/**/*.dll binary
+/Prebuilt/**/*.a binary
+/Prebuilt/**/*.so binary
+/Prebuilt/**/*.so.* binary
