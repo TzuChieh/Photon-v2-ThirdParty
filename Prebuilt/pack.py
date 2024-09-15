@@ -15,7 +15,7 @@ for prebuilt_type in prebuilt_types:
         for filename in filenames:
             filepath = dirpath / filename
             if filepath.is_symlink():
-                symlink_src_to_dst[str(filepath)] = str(dirpath / filepath.readlink())
+                symlink_src_to_dst[str(filepath)] = str(filepath.readlink())
     print(f"collected {len(symlink_src_to_dst)} symlinks for {prebuilt_type}")
 
     # Write symlinks src -> dst dict to .json
