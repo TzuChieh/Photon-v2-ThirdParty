@@ -1,1 +1,21 @@
-{}
+{
+    "Prebuilt/linux/ThirdParty/glfw/lib/libglfw.so.3": "libglfw.so.3.3",
+    "Prebuilt/linux/ThirdParty/glfw/lib/libglfw.so": "libglfw.so.3",
+    "Prebuilt/linux/ThirdParty/OpenEXR/lib/libOpenEXRUtil.so.31": "libOpenEXRUtil.so.31.3.2.4",
+    "Prebuilt/linux/ThirdParty/OpenEXR/lib/libIex.so.31": "libIex.so.31.3.2.4",
+    "Prebuilt/linux/ThirdParty/OpenEXR/lib/libOpenEXRUtil.so": "libOpenEXRUtil.so.31",
+    "Prebuilt/linux/ThirdParty/OpenEXR/lib/libIlmThread.so.31": "libIlmThread.so.31.3.2.4",
+    "Prebuilt/linux/ThirdParty/OpenEXR/lib/libIex.so": "libIex.so.31",
+    "Prebuilt/linux/ThirdParty/OpenEXR/lib/libOpenEXRCore.so.31": "libOpenEXRCore.so.31.3.2.4",
+    "Prebuilt/linux/ThirdParty/OpenEXR/lib/libIlmThread.so": "libIlmThread.so.31",
+    "Prebuilt/linux/ThirdParty/OpenEXR/lib/libImath-3_1.so": "libImath-3_1.so.29",
+    "Prebuilt/linux/ThirdParty/OpenEXR/lib/libOpenEXR.so": "libOpenEXR.so.31",
+    "Prebuilt/linux/ThirdParty/OpenEXR/lib/libOpenEXR.so.31": "libOpenEXR.so.31.3.2.4",
+    "Prebuilt/linux/ThirdParty/OpenEXR/lib/libOpenEXRCore.so": "libOpenEXRCore.so.31",
+    "Prebuilt/linux/ThirdParty/OpenEXR/lib/libImath-3_1.so.29": "libImath-3_1.so.29.10.0",
+    "Prebuilt/linux/ThirdParty/OpenEXR/lib/libImath.so": "libImath-3_1.so",
+    "Prebuilt/linux/ThirdParty/googletest/lib/libgtest.so": "libgtest.so.1.11.0",
+    "Prebuilt/linux/ThirdParty/googletest/lib/libgtest_main.so": "libgtest_main.so.1.11.0",
+    "Prebuilt/linux/ThirdParty/googletest/lib/libgmock_main.so": "libgmock_main.so.1.11.0",
+    "Prebuilt/linux/ThirdParty/googletest/lib/libgmock.so": "libgmock.so.1.11.0"
+}
