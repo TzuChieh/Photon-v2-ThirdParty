@@ -8,12 +8,12 @@ set(CMAKE_IMPORT_FILE_VERSION 1)
 # Import target "glad::glad" for configuration "Release"
 set_property(TARGET glad::glad APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(glad::glad PROPERTIES
-  IMPORTED_IMPLIB_RELEASE "${_IMPORT_PREFIX}/lib/glad.lib"
-  IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/bin/glad.dll"
+  IMPORTED_IMPLIB_RELEASE "${_IMPORT_PREFIX}/lib/Photon_glad.lib"
+  IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/bin/Photon_glad.dll"
   )
 
 list(APPEND _cmake_import_check_targets glad::glad )
-list(APPEND _cmake_import_check_files_for_glad::glad "${_IMPORT_PREFIX}/lib/glad.lib" "${_IMPORT_PREFIX}/bin/glad.dll" )
+list(APPEND _cmake_import_check_files_for_glad::glad "${_IMPORT_PREFIX}/lib/Photon_glad.lib" "${_IMPORT_PREFIX}/bin/Photon_glad.dll" )
 
 # Commands beyond this point should not need to know the version.
 set(CMAKE_IMPORT_FILE_VERSION)
