@@ -17,6 +17,9 @@ endif()
 
 option(BUILD_SHARED_LIBS "Build as shared libraries if applicable." ON)
 
+set(PH_TARGET_BLENDER_VERSION "4.5" CACHE STRING
+    "Target a specific Blender version (e.g., 3.6, 4.5). Empty means no specific version is targeted.")
+
 # Compile with C++23 standard enabled
 set(CMAKE_CXX_STANDARD          23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -38,6 +41,16 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 
     # Use multithreaded compilation
     set(CMAKE_CXX_FLAGS         "${CMAKE_CXX_FLAGS} /MP")
+
+    # For Blender version < 5.2, they use a MSVC runtime which is older than 17.10 and there is a binary incompatibility
+    # due to updated mutex ctor. Python binding will crash in Blender with MSVCP140 related error.
+    # See https://github.com/microsoft/STL/issues/4978 for more details.
+    if(PH_TARGET_BLENDER_VERSION AND PH_TARGET_BLENDER_VERSION VERSION_LESS "5.2")
+        if(MSVC_VERSION GREATER_EQUAL 1940)
+            # Will be passed to ExternalProjects
+            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /D_DISABLE_CONSTEXPR_MUTEX_CONSTRUCTOR")
+        endif()
+    endif()
 
 # Using GCC
 elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
